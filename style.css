@@ -757,10 +757,127 @@ footer p {
   transition: opacity 0.5s ease, bottom 0.5s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
 .toast.show {
   visibility: visible;
   opacity: 1;
   bottom: 50px;
+}
+
+/* ===== NOT-DEPLOYED MODAL ===== */
+.nd-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.nd-modal-backdrop.active {
+  display: flex;
+  animation: fadeInBackdrop 0.25s ease;
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.nd-modal {
+  background: #111;
+  border: 2px solid #ff004f;
+  border-radius: 20px;
+  padding: 45px 40px 35px;
+  max-width: 440px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(255, 0, 79, 0.35);
+  animation: slideUpModal 0.3s ease;
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.nd-modal-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 0, 79, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border: 2px solid rgba(255, 0, 79, 0.3);
+}
+
+.nd-modal-icon i {
+  font-size: 30px;
+  color: #ff004f;
+}
+
+.nd-modal h3 {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.nd-modal p {
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.nd-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nd-github-btn {
+  background: #ff004f;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.nd-github-btn:hover {
+  background: #e6003d;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 0, 79, 0.4);
+}
+
+.nd-close-btn {
+  background: transparent;
+  color: #aaa;
+  border: 2px solid #333;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.nd-close-btn:hover {
+  border-color: #555;
+  color: #fff;
 }
 
 /* ===== MOBILE RESPONSIVE ===== */
@@ -769,7 +886,6 @@ footer p {
     overflow-x: hidden;
   }
 
-  /* Change background image for mobile */
   #header {
     background-image: url(images/background.jpg);
     background-size: cover;
@@ -780,7 +896,6 @@ footer p {
     padding: 10px 5%;
   }
 
-  /* Mobile Navigation */
   #menu-icon {
     display: block;
   }
@@ -817,7 +932,6 @@ footer p {
     padding: 10px;
   }
 
-  /* Header */
   .logo h1 {
     font-size: 26px;
   }
@@ -831,7 +945,6 @@ footer p {
     font-size: 50px;
   }
 
-  /* About */
   .sub-title {
     font-size: 32px;
     text-align: center;
@@ -876,7 +989,6 @@ footer p {
     font-size: 14px;
   }
 
-  /* Services */
   #services .sub-title {
     font-size: 32px;
   }
@@ -902,7 +1014,6 @@ footer p {
     font-size: 14px;
   }
 
-  /* Portfolio */
   #portfolio .sub-title {
     font-size: 32px;
   }
@@ -955,7 +1066,6 @@ footer p {
     padding: 5px 12px;
   }
 
-  /* Contact */
   #contact .sub-title {
     font-size: 32px;
   }
@@ -1006,7 +1116,6 @@ footer p {
     justify-content: center;
   }
 
-  /* Dashboard */
   #dashboard .sub-title {
     font-size: 32px;
   }
@@ -1032,7 +1141,6 @@ footer p {
     font-size: 24px;
   }
 
-  /* Toast */
   .toast {
     min-width: 200px;
     max-width: 85%;
@@ -1045,7 +1153,6 @@ footer p {
     bottom: 30px;
   }
 
-  /* Footer */
   footer {
     padding: 25px 0;
   }
@@ -1063,6 +1170,26 @@ footer p {
     width: 35px;
     height: 35px;
     font-size: 16px;
+  }
+
+  /* Modal on mobile */
+  .nd-modal {
+    padding: 35px 25px 28px;
+  }
+
+  .nd-modal h3 {
+    font-size: 19px;
+  }
+
+  .nd-modal p {
+    font-size: 14px;
+  }
+
+  .nd-github-btn,
+  .nd-close-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
   }
 }
 
@@ -1172,7 +1299,6 @@ footer p {
   transform: translateY(0);
 }
 
-/* Mobile responsive for back to top button */
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 20px;
