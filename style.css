@@ -886,10 +886,15 @@ footer p {
     overflow-x: hidden;
   }
 
+  /* ── HEADER FIX ── */
   #header {
     background-image: url(images/background.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: left center; /* shift left so face/subject is visible */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .container {
@@ -936,13 +941,16 @@ footer p {
     font-size: 26px;
   }
 
+  /* Push text down so background subject shows above it */
   .header-text {
-    margin-top: 20%;
-    font-size: 30px;
+    margin-top: 55%;
+    font-size: 18px;
+    padding: 0 5%;
   }
 
   .header-text h1 {
-    font-size: 50px;
+    font-size: 36px;
+    margin-top: 10px;
   }
 
   .sub-title {
@@ -1195,13 +1203,18 @@ footer p {
 
 /* Extra small devices */
 @media (max-width: 480px) {
+  #header {
+    background-position: 30% center; /* fine-tune for very small screens */
+  }
+
   .header-text {
-    margin-top: 40%;
-    font-size: 16px;
+    margin-top: 60%;
+    font-size: 15px;
+    padding: 0 5%;
   }
 
   .header-text h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .sub-title {
@@ -1246,18 +1259,19 @@ footer p {
 
 /* Landscape */
 @media (max-width: 768px) and (orientation: landscape) {
+  #header {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    background-position: center top;
+  }
+
   .header-text {
     margin-top: 10%;
   }
 
   .header-text h1 {
     font-size: 28px;
-  }
-
-  #header {
-    height: auto;
-    min-height: 100vh;
-    padding-bottom: 40px;
   }
 }
 
