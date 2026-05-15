@@ -638,6 +638,20 @@
         _currentGithubUrl = '';
       }
     });
+
+    // ===== TAP TO REVEAL OVERLAY ON MOBILE =====
+    document.querySelectorAll('.portfolio-card').forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        // Don't interfere if they tapped a button/link directly
+        if (e.target.closest('.portfolio-links')) return;
+        const isActive = card.classList.contains('tapped');
+        // Close all other open overlays first
+        document.querySelectorAll('.portfolio-card.tapped').forEach(function(c) {
+          c.classList.remove('tapped');
+        });
+        if (!isActive) card.classList.add('tapped');
+      });
+    });
   </script>
 </body>
 </html>
