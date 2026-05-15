@@ -888,9 +888,9 @@ footer p {
 
   /* ── HEADER FIX ── */
   #header {
-    background-image: url(images/background.jpg);
+    background-image: url(images/mobile-background.jpg); /* ← updated */
     background-size: cover;
-    background-position: left center; /* shift left so face/subject is visible */
+    background-position: left center;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -1204,7 +1204,7 @@ footer p {
 /* Extra small devices */
 @media (max-width: 480px) {
   #header {
-    background-position: 30% center; /* fine-tune for very small screens */
+    background-position: 30% center;
   }
 
   .header-text {
