@@ -1042,28 +1042,16 @@ footer p {
     object-fit: cover;
   }
 
-  /* Always show overlay content on mobile — no hover needed */
-  .portfolio-overlay {
-    position: static;
-    opacity: 1;
-    background: transparent;
-    padding: 0;
-    display: block;
-  }
-
   .portfolio-info {
-    padding: 15px 20px 5px;
-    text-align: left;
+    padding: 20px;
   }
 
   .portfolio-info h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-size: 18px;
   }
 
-  /* Hide description to keep cards compact */
   .portfolio-info p {
-    display: none;
+    font-size: 13px;
   }
 
   .portfolio-links {
@@ -1075,8 +1063,13 @@ footer p {
   .portfolio-links a {
     flex: 1;
     justify-content: center;
-    padding: 9px 12px;
+    padding: 10px 12px;
     font-size: 13px;
+  }
+
+  /* Show overlay on tap via .tapped class added by JS */
+  .portfolio-card.tapped .portfolio-overlay {
+    opacity: 1;
   }
 
   .portfolio-content h3 {
