@@ -84,8 +84,7 @@
         </ul>
       </nav>
       <div class="header-text">
-        <p> Embedded Engineer/ Web Developer/ Data Analyst</p>
-</p></p>
+        <p>Embedded Engineer/ Web Developer/ Data Analyst</p>
         <h1>Hi, I'm <span>Adjei</span><br />Bismarck from Ghana</h1>
       </div>
     </div>
@@ -102,22 +101,27 @@
           <h1 class="sub-title">About Me</h1>
           <p>
             I'm an Embedded Systems Engineer with a strong command of the full technology stack. While my foundation lies in designing and programming hardware systems, I've expanded my expertise across backend development, web engineering, data analytics, and graphic design — giving me the ability to build complete, end-to-end solutions from the hardware level all the way up to the user interface. I don't just write firmware; I architect the systems, analyse the data they generate, and design the platforms that bring them to life. My goal is to bridge the physical and digital worlds through technology that is efficient, scalable, and purposeful.
+          </p>
+
+          <div class="tab-titles">
+            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
             <p class="tab-links" onclick="opentab('experience')">Experience</p>
             <p class="tab-links" onclick="opentab('education')">Education</p>
           </div>
 
           <div class="tab-contents active-tab" id="skills">
             <ul>
-              <li><span>Data Analytics</span><br />Interprets data to help organizations make informed decisions.</li>
+              <li><span>Embedded Systems</span><br />Designs and programs hardware systems, microcontrollers, and IoT devices.</li>
               <li><span>Backend Development</span><br />Handles system integration and server-side logic.</li>
               <li><span>Web Development</span><br />Designs and develops responsive web interfaces.</li>
-              <li><span> Graphic Designer</span><br />Creates visual concepts that inspires, inform or captivates consumers.</li>
+              <li><span>Data Analytics</span><br />Interprets data to help organizations make informed decisions.</li>
+              <li><span>Graphic Design</span><br />Creates visual concepts that inspire, inform or captivate consumers.</li>
             </ul>
           </div>
 
           <div class="tab-contents" id="experience">
             <ul>
-              <li><span>2024- 2024</span><br />Data Analyst at CognoRise InfoTech</li>
+              <li><span>2024 - 2024</span><br />Data Analyst at CognoRise InfoTech</li>
               <li><span>2024 - 2024</span><br />Intern at Electricity Company of Ghana</li>
               <li><span>2024 - 2024</span><br />Junior Backend Developer at Smart Hives Lab</li>
               <li><span>2025 - 2025</span><br />Editor-In-Chief, Computer Science</li>
@@ -203,11 +207,6 @@
   </div>
 
   <!-- ===== PORTFOLIO SECTION ===== -->
-  <!--
-    HOW TO USE:
-    - data-github="https://github.com/adjetey0/REPO-NAME"  replace with your actual repo URL
-    - data-live="https://your-site.com"                    replace with live URL, or "" if not deployed
-  -->
   <section id="portfolio">
     <div class="container">
       <h1 class="sub-title">My <span>Portfolio</span></h1>
@@ -249,7 +248,7 @@
             <img src="images/CLI Tooling.jpeg" alt="CLI Tooling / Developer Tooling">
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <h3>CLI Tooling </h3>
+                <h3>CLI Tooling</h3>
                 <p>FORG automates a repetitive manual task (searching for files) and schedules background work via Windows Task Scheduler.</p>
                 <div class="portfolio-links">
                   <a href="#" onclick="handleLiveClick(event, this)"><i class="fa-solid fa-link"></i> View Project</a>
@@ -638,10 +637,8 @@
     // ===== TAP TO REVEAL OVERLAY ON MOBILE =====
     document.querySelectorAll('.portfolio-card').forEach(function(card) {
       card.addEventListener('click', function(e) {
-        // Don't interfere if they tapped a button/link directly
         if (e.target.closest('.portfolio-links')) return;
         const isActive = card.classList.contains('tapped');
-        // Close all other open overlays first
         document.querySelectorAll('.portfolio-card.tapped').forEach(function(c) {
           c.classList.remove('tapped');
         });
