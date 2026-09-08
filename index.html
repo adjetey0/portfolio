@@ -80,6 +80,7 @@
           <li><a href="#services" onclick="closeMenu()">Services</a></li>
           <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
           <li><a href="#album" onclick="closeMenu()">Album</a></li>
+          <li><a href="#wall" onclick="closeMenu()">Wall</a></li>
           <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
           <li><a href="#dashboard" onclick="closeMenu()">Dashboard</a></li>
         </ul>
@@ -423,6 +424,26 @@
     </div>
   </section>
 
+  <!-- ===== WALL SECTION ===== -->
+  <section id="wall">
+    <div class="container">
+      <h1 class="sub-title">Sign My <span>Wall</span></h1>
+      <p class="wall-subtext">Leave a note, share a memory, or comment on the work — it'll show up here for everyone.</p>
+
+      <form id="wall-form" class="wall-form">
+        <div class="wall-form-row">
+          <input type="text" id="wall-name" placeholder="Your Name" maxlength="40" required>
+        </div>
+        <textarea id="wall-message" rows="3" placeholder="Say something..." maxlength="400" required></textarea>
+        <button type="submit" class="btn" id="wall-submit-btn">Post to Wall</button>
+      </form>
+
+      <div id="wall-posts" class="wall-grid">
+        <p class="wall-loading" id="wall-loading">Loading wall…</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== LIGHTBOX ===== -->
   <div id="lightbox" class="nd-modal-backdrop" onclick="closeLightbox(event)">
     <div class="lightbox-inner">
@@ -756,6 +777,120 @@
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') navLightbox(1);
       if (e.key === 'ArrowLeft') navLightbox(-1);
+    });
+  </script>
+
+  <!-- ===== WALL: FIREBASE ===== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import {
+      getFirestore, collection, addDoc, query, orderBy,
+      limit, onSnapshot, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+    // ⚠️ Firebase project config (Project settings → General → Your apps → SDK setup)
+    const firebaseConfig = {
+    apiKey: "AIzaSyCGDJeB7hb3pwS1Y2dVswHG4htoDf9HFO8",
+    authDomain: "myportfolio-940e2.firebaseapp.com",
+    projectId: "myportfolio-940e2",
+    storageBucket: "myportfolio-940e2.firebasestorage.app",
+    messagingSenderId: "718368808589",
+    appId: "1:718368808589:web:5579f0f59402bc036a8cc4",
+    measurementId: "G-2QT2G8SWZW"
+  };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const wallRef = collection(db, "wallPosts");
+
+    const wallForm = document.getElementById('wall-form');
+    const wallPostsEl = document.getElementById('wall-posts');
+    const wallLoading = document.getElementById('wall-loading');
+    const submitBtn = document.getElementById('wall-submit-btn');
+
+    // Basic client-side rate limit: 1 post per 30 seconds per browser
+    const WALL_COOLDOWN_MS = 30000;
+
+    function escapeHTML(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function timeAgo(date) {
+      if (!date) return 'just now';
+      const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+      if (seconds < 60) return 'just now';
+      const minutes = Math.floor(seconds / 60);
+      if (minutes < 60) return minutes + 'm ago';
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return hours + 'h ago';
+      const days = Math.floor(hours / 24);
+      return days + 'd ago';
+    }
+
+    function renderPosts(snapshot) {
+      wallLoading.remove();
+      wallPostsEl.innerHTML = '';
+
+      if (snapshot.empty) {
+        wallPostsEl.innerHTML = '<p class="wall-empty">No posts yet — be the first to sign the wall!</p>';
+        return;
+      }
+
+      snapshot.forEach(function (docSnap) {
+        const data = docSnap.data();
+        const card = document.createElement('div');
+        card.className = 'wall-card';
+        const ts = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate() : null;
+        card.innerHTML =
+          '<p class="wall-card-message">' + escapeHTML(data.message) + '</p>' +
+          '<div class="wall-card-meta">' +
+            '<span class="wall-card-name">' + escapeHTML(data.name) + '</span>' +
+            '<span class="wall-card-time">' + timeAgo(ts) + '</span>' +
+          '</div>';
+        wallPostsEl.appendChild(card);
+      });
+    }
+
+    const wallQuery = query(wallRef, orderBy('createdAt', 'desc'), limit(100));
+    onSnapshot(wallQuery, renderPosts, function (err) {
+      console.error('Wall load error:', err);
+      wallLoading.textContent = 'Could not load the wall right now.';
+    });
+
+    wallForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const lastPost = Number(localStorage.getItem('wallLastPostAt') || 0);
+      if (Date.now() - lastPost < WALL_COOLDOWN_MS) {
+        showToast('✋ Please wait a moment before posting again.');
+        return;
+      }
+
+      const name = document.getElementById('wall-name').value.trim();
+      const message = document.getElementById('wall-message').value.trim();
+      if (!name || !message) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Posting...';
+
+      try {
+        await addDoc(wallRef, {
+          name: name.slice(0, 40),
+          message: message.slice(0, 400),
+          createdAt: serverTimestamp()
+        });
+        localStorage.setItem('wallLastPostAt', String(Date.now()));
+        wallForm.reset();
+        showToast('✓ Posted to the wall!');
+      } catch (err) {
+        console.error('Wall post error:', err);
+        showToast('✗ Could not post. Try again.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Post to Wall';
+      }
     });
   </script>
 </body>
