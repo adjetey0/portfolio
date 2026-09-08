@@ -4,66 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>nii adjetey</title>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme
+    (function () {
+      var saved = localStorage.getItem('nd-theme');
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- Modal styles only — style.css is untouched -->
-  <style>
-    .nd-modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(4px);
-    }
-    .nd-modal-backdrop.active { display: flex; }
-    .nd-modal {
-      background: #111;
-      border: 2px solid #ff004f;
-      border-radius: 20px;
-      padding: 45px 40px 35px;
-      max-width: 440px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 0 50px rgba(255, 0, 79, 0.35);
-      animation: slideUpModal 0.3s ease;
-    }
-    @keyframes slideUpModal {
-      from { transform: translateY(30px); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
-    }
-    .nd-modal-icon {
-      width: 70px; height: 70px;
-      background: rgba(255, 0, 79, 0.1);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 20px;
-      border: 2px solid rgba(255, 0, 79, 0.3);
-    }
-    .nd-modal-icon i { font-size: 30px; color: #ff004f; }
-    .nd-modal h3 { font-size: 22px; color: #fff; margin-bottom: 12px; }
-    .nd-modal p  { color: #aaa; font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
-    .nd-modal-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .nd-github-btn {
-      background: #ff004f; color: white; border: none;
-      padding: 12px 24px; border-radius: 10px;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: all 0.3s ease; font-family: 'Poppins', sans-serif;
-    }
-    .nd-github-btn:hover { background: #e6003d; transform: translateY(-2px); }
-    .nd-close-btn {
-      background: transparent; color: #aaa;
-      border: 2px solid #333; padding: 12px 24px;
-      border-radius: 10px; font-size: 15px; font-weight: 600;
-      cursor: pointer; transition: all 0.3s ease;
-      font-family: 'Poppins', sans-serif;
-    }
-    .nd-close-btn:hover { border-color: #555; color: #fff; }
-  </style>
 </head>
 <body>
   <!-- ===== HEADER ===== -->
@@ -73,7 +24,6 @@
         <div class="logo">
           <h1><span>B</span>ISMARCK</h1>
         </div>
-        <i class="fas fa-bars" id="menu-icon"></i>
         <ul id="nav-menu">
           <li><a href="#header" onclick="closeMenu()">Home</a></li>
           <li><a href="#about" onclick="closeMenu()">About</a></li>
@@ -84,6 +34,12 @@
           <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
           <li><a href="#dashboard" onclick="closeMenu()">Dashboard</a></li>
         </ul>
+        <div class="nav-right">
+          <button id="theme-toggle" title="Toggle theme" aria-label="Toggle light/dark theme">
+            <i class="fa-solid fa-moon" id="theme-toggle-icon"></i>
+          </button>
+          <i class="fas fa-bars" id="menu-icon"></i>
+        </div>
       </nav>
       <div class="header-text">
         <p>Embedded Engineer/ Web Developer/ Data Analyst</p>
@@ -611,6 +567,30 @@
       }
     }
 
+    // ===== THEME TOGGLE =====
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+    const htmlEl = document.documentElement;
+
+    function syncThemeIcon() {
+      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+      themeToggleIcon.classList.toggle('fa-moon', !isDark);
+      themeToggleIcon.classList.toggle('fa-sun', isDark);
+    }
+    syncThemeIcon();
+
+    themeToggleBtn.addEventListener('click', function () {
+      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        htmlEl.removeAttribute('data-theme');
+        localStorage.setItem('nd-theme', 'light');
+      } else {
+        htmlEl.setAttribute('data-theme', 'dark');
+        localStorage.setItem('nd-theme', 'dark');
+      }
+      syncThemeIcon();
+    });
+
     // Show toast function
     function showToast(message, duration = 3000) {
       const toast = document.getElementById("toast");
@@ -788,7 +768,7 @@
       limit, onSnapshot, serverTimestamp
     } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-    // ⚠️ Firebase project config (Project settings → General → Your apps → SDK setup)
+    // ⚠️Firebase project config (Project settings → General → Your apps → SDK setup)
     const firebaseConfig = {
     apiKey: "AIzaSyCGDJeB7hb3pwS1Y2dVswHG4htoDf9HFO8",
     authDomain: "myportfolio-940e2.firebaseapp.com",
