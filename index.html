@@ -79,6 +79,7 @@
           <li><a href="#about" onclick="closeMenu()">About</a></li>
           <li><a href="#services" onclick="closeMenu()">Services</a></li>
           <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="#album" onclick="closeMenu()">Album</a></li>
           <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
           <li><a href="#dashboard" onclick="closeMenu()">Dashboard</a></li>
         </ul>
@@ -383,6 +384,56 @@
     </div>
   </section>
 
+  <!-- ===== ALBUM SECTION ===== -->
+  <section id="album">
+    <div class="container">
+      <h1 class="sub-title">My <span>Album</span></h1>
+
+      <div class="album-tabs">
+        <button class="album-tab active-tab-btn" data-filter="all">All</button>
+        <button class="album-tab" data-filter="me">Me</button>
+        <button class="album-tab" data-filter="craft">Craft</button>
+        <button class="album-tab" data-filter="events">Events</button>
+      </div>
+
+      <div class="album-grid">
+
+        <div class="album-item" data-category="me">
+          <img src="images/album/me-1.jpg" alt="Portrait" loading="lazy">
+          <div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="album-item" data-category="craft">
+          <img src="images/album/craft-1.jpg" alt="Working on a project" loading="lazy">
+          <div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="album-item" data-category="events">
+          <img src="images/album/event-1.jpg" alt="At an event" loading="lazy">
+          <div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <!--
+          Add more photos by duplicating an .album-item block above.
+          Set data-category to "me", "craft", or "events".
+          Put your image files in images/album/ and update the src + alt.
+        -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div id="lightbox" class="nd-modal-backdrop" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+      <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1, event)"><i class="fa-solid fa-chevron-left"></i></button>
+      <img id="lightbox-img" src="" alt="">
+      <button class="lightbox-nav lightbox-next" onclick="navLightbox(1, event)"><i class="fa-solid fa-chevron-right"></i></button>
+      <p id="lightbox-caption"></p>
+    </div>
+  </div>
+
   <!-- ===== CONTACT SECTION ===== -->
   <section id="contact">
     <div class="container">
@@ -646,6 +697,65 @@
         });
         if (!isActive) card.classList.add('tapped');
       });
+    });
+
+    // ===== ALBUM: FILTER TABS =====
+    const albumTabs = document.querySelectorAll('.album-tab');
+    const albumItems = document.querySelectorAll('.album-item');
+
+    albumTabs.forEach(function(tab) {
+      tab.addEventListener('click', function () {
+        albumTabs.forEach(function(t) { t.classList.remove('active-tab-btn'); });
+        this.classList.add('active-tab-btn');
+        const filter = this.dataset.filter;
+
+        albumItems.forEach(function(item) {
+          const match = filter === 'all' || item.dataset.category === filter;
+          item.classList.toggle('hide', !match);
+        });
+      });
+    });
+
+    // ===== ALBUM: LIGHTBOX =====
+    let _visibleItems = [];
+    let _lightboxIndex = 0;
+
+    function getVisibleAlbumItems() {
+      return Array.from(document.querySelectorAll('.album-item:not(.hide)'));
+    }
+
+    albumItems.forEach(function(item) {
+      item.addEventListener('click', function () {
+        _visibleItems = getVisibleAlbumItems();
+        _lightboxIndex = _visibleItems.indexOf(this);
+        openLightboxAt(_lightboxIndex);
+      });
+    });
+
+    function openLightboxAt(index) {
+      if (!_visibleItems.length) _visibleItems = getVisibleAlbumItems();
+      _lightboxIndex = (index + _visibleItems.length) % _visibleItems.length;
+      const img = _visibleItems[_lightboxIndex].querySelector('img');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-caption').textContent = img.alt || '';
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function navLightbox(dir, e) {
+      if (e) e.stopPropagation();
+      openLightboxAt(_lightboxIndex + dir);
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target !== document.getElementById('lightbox')) return;
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') navLightbox(1);
+      if (e.key === 'ArrowLeft') navLightbox(-1);
     });
   </script>
 </body>
