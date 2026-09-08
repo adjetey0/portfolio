@@ -768,7 +768,7 @@
       limit, onSnapshot, serverTimestamp
     } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-    // ⚠️ Replace with your own Firebase project config (Project settings → General → Your apps → SDK setup)
+    // ⚠️Firebase project config (Project settings → General → Your apps → SDK setup)
     const firebaseConfig = {
     apiKey: "AIzaSyCGDJeB7hb3pwS1Y2dVswHG4htoDf9HFO8",
     authDomain: "myportfolio-940e2.firebaseapp.com",
@@ -778,7 +778,6 @@
     appId: "1:718368808589:web:5579f0f59402bc036a8cc4",
     measurementId: "G-2QT2G8SWZW"
   };
-
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const wallRef = collection(db, "wallPosts");
