@@ -818,13 +818,80 @@ nav ul li a:hover::after {
   margin: 0 auto 40px;
 }
 
-.wall-form {
+.wall-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 45px;
+  flex-wrap: wrap;
+}
+
+.wall-toolbar-btn {
   background: #111;
   border: 2px solid #222;
-  border-radius: 15px;
-  padding: 30px;
-  max-width: 640px;
-  margin: 0 auto 50px;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.wall-toolbar-btn:hover {
+  border-color: #ff004f;
+  transform: translateY(-2px);
+}
+
+.wall-sign-btn {
+  background: #ff004f;
+  border-color: #ff004f;
+}
+
+.wall-sign-btn:hover {
+  background: #e6003d;
+}
+
+.wall-icon-btn {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 16px;
+}
+
+.wall-icon-btn.spinning i {
+  animation: spin 0.5s linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.wall-count {
+  color: #888;
+  font-size: 13px;
+}
+
+/* ===== SIGN MODAL ===== */
+.wall-sign-modal {
+  max-width: 480px;
+  text-align: left;
+}
+
+.wall-sign-modal h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.wall-form {
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -856,15 +923,22 @@ nav ul li a:hover::after {
   box-shadow: 0 0 15px rgba(255, 0, 79, 0.2);
 }
 
-.wall-form .btn {
-  align-self: center;
-  padding: 14px 45px;
+.wall-sign-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }
 
+.wall-sign-actions .btn {
+  padding: 12px 30px;
+}
+
+/* ===== NOTE WALL (sticky-note cards) ===== */
 .wall-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 26px;
+  padding: 10px;
 }
 
 .wall-loading,
@@ -877,46 +951,54 @@ nav ul li a:hover::after {
 }
 
 .wall-card {
-  background: #111;
-  border: 2px solid transparent;
-  border-radius: 15px;
-  padding: 24px;
-  transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  background: #fdf9f0;
+  border: 1px solid #e5ddd0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .wall-card:hover {
-  transform: translateY(-6px);
-  border-color: #ff004f;
-  box-shadow: 0 0 25px rgba(255, 0, 79, 0.3);
-}
-
-.wall-card-message {
-  color: #eee;
-  font-size: 15px;
-  line-height: 1.6;
-  word-break: break-word;
-}
-
-.wall-card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid #222;
-  padding-top: 12px;
+  transform: translateY(-6px) rotate(0deg) !important;
+  box-shadow: 0 16px 34px rgba(255, 0, 79, 0.3);
+  z-index: 5;
 }
 
 .wall-card-name {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  font-weight: 700;
   color: #ff004f;
-  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.wall-card-message {
+  color: #2a2a2a;
   font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  word-break: break-word;
+}
+
+.wall-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ece4d3;
+  padding-top: 10px;
+}
+
+.wall-card-handle {
+  color: #b0a894;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .wall-card-time {
-  color: #777;
-  font-size: 12px;
+  color: #b0a894;
+  font-size: 11px;
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -1534,11 +1616,26 @@ footer p {
     padding: 0 5%;
   }
 
-  .wall-form {
-    padding: 22px;
+  .wall-toolbar-btn {
+    padding: 10px 18px;
+    font-size: 13px;
   }
 
-  .wall-form .btn {
+  .wall-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .wall-sign-modal {
+    padding: 30px 22px;
+  }
+
+  .wall-sign-actions {
+    flex-direction: column;
+  }
+
+  .wall-sign-actions .btn,
+  .wall-sign-actions .nd-close-btn {
     width: 100%;
   }
 
