@@ -408,13 +408,38 @@
   <!-- ===== WALL: SIGN MODAL ===== -->
   <div id="wall-sign-modal" class="nd-modal-backdrop" onclick="closeWallModal(event)">
     <div class="nd-modal wall-sign-modal">
-      <h3>Sign the Wall</h3>
+      <div class="wall-sign-header">
+        <div>
+          <h3>Sign on the Wall</h3>
+          <p class="wall-sign-subtitle">Leave your signature and note on the permanent canvas.</p>
+        </div>
+        <button type="button" class="wall-sign-close" onclick="closeWallModal()" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
       <form id="wall-form" class="wall-form">
-        <input type="text" id="wall-name" placeholder="Your Name" maxlength="40" required>
-        <textarea id="wall-message" rows="3" placeholder="Say something..." maxlength="400" required></textarea>
-        <div class="wall-sign-actions">
-          <button type="submit" class="btn" id="wall-submit-btn">Post to Wall</button>
-          <button type="button" class="nd-close-btn" onclick="closeWallModal()">Cancel</button>
+        <div class="wall-form-row">
+          <div class="wall-input-icon">
+            <i class="fa-solid fa-tag"></i>
+            <input type="text" id="wall-name" placeholder="Your Name / Alias" maxlength="40" required>
+          </div>
+          <div class="wall-input-icon">
+            <i class="fa-solid fa-link"></i>
+            <input type="text" id="wall-handle" placeholder="@handle or website" maxlength="40">
+          </div>
+        </div>
+
+        <textarea id="wall-message" rows="3" placeholder="Write your note, greeting, or advice here..." maxlength="250" required></textarea>
+
+        <div class="wall-sig-preview">
+          <span class="wall-sig-label">Signature Preview</span>
+          <p class="wall-sig-text" id="wall-sig-text">Your Signature</p>
+        </div>
+
+        <div class="wall-sign-footer">
+          <span class="wall-char-count" id="wall-char-count">0/250</span>
+          <button type="submit" class="btn" id="wall-submit-btn">Place on Wall</button>
         </div>
       </form>
     </div>
@@ -843,6 +868,12 @@
     const wallSignModal = document.getElementById('wall-sign-modal');
     const wallShuffleBtn = document.getElementById('wall-shuffle-btn');
     const wallRefreshBtn = document.getElementById('wall-refresh-btn');
+    const wallNameInput = document.getElementById('wall-name');
+    const wallHandleInput = document.getElementById('wall-handle');
+    const wallMessageInput = document.getElementById('wall-message');
+    const wallSigText = document.getElementById('wall-sig-text');
+    const wallCharCount = document.getElementById('wall-char-count');
+    const MESSAGE_MAX = 250;
 
     // Basic client-side rate limit: 1 post per 30 seconds per browser
     const WALL_COOLDOWN_MS = 30000;
@@ -856,6 +887,13 @@
 
     function toHandle(name) {
       return '@' + name.toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 20);
+    }
+
+    function cleanHandle(raw) {
+      if (!raw) return '';
+      raw = raw.trim();
+      if (/^https?:\/\//i.test(raw) || raw.includes('.')) return raw; // looks like a website, leave as-is
+      return raw.startsWith('@') ? raw : '@' + raw.replace(/^@+/, '');
     }
 
     function formatDate(date) {
@@ -889,7 +927,7 @@
           '<p class="wall-card-name">' + escapeHTML(data.name) + '</p>' +
           '<p class="wall-card-message">' + escapeHTML(data.message) + '</p>' +
           '<div class="wall-card-footer">' +
-            '<span class="wall-card-handle">' + escapeHTML(toHandle(data.name)) + '</span>' +
+            '<span class="wall-card-handle">' + escapeHTML(data.handle || toHandle(data.name)) + '</span>' +
             '<span class="wall-card-time">' + formatDate(ts) + '</span>' +
           '</div>';
         wallPostsEl.appendChild(card);
@@ -912,6 +950,18 @@
       wallSignModal.classList.remove('active');
     }
     window.closeWallModal = closeWallModal;
+
+    // ===== Live signature preview =====
+    wallNameInput.addEventListener('input', function () {
+      const val = wallNameInput.value.trim();
+      wallSigText.textContent = val || 'Your Signature';
+    });
+
+    // ===== Character counter =====
+    wallMessageInput.addEventListener('input', function () {
+      const len = wallMessageInput.value.length;
+      wallCharCount.textContent = len + '/' + MESSAGE_MAX;
+    });
 
     // ===== Toolbar: Shuffle (re-randomize card tilt) =====
     wallShuffleBtn.addEventListener('click', function () {
@@ -936,8 +986,9 @@
         return;
       }
 
-      const name = document.getElementById('wall-name').value.trim();
-      const message = document.getElementById('wall-message').value.trim();
+      const name = wallNameInput.value.trim();
+      const handleRaw = wallHandleInput.value.trim();
+      const message = wallMessageInput.value.trim();
       if (!name || !message) return;
 
       submitBtn.disabled = true;
@@ -946,11 +997,14 @@
       try {
         await addDoc(wallRef, {
           name: name.slice(0, 40),
-          message: message.slice(0, 400),
+          handle: cleanHandle(handleRaw).slice(0, 40),
+          message: message.slice(0, MESSAGE_MAX),
           createdAt: serverTimestamp()
         });
         localStorage.setItem('wallLastPostAt', String(Date.now()));
         wallForm.reset();
+        wallSigText.textContent = 'Your Signature';
+        wallCharCount.textContent = '0/' + MESSAGE_MAX;
         closeWallModal();
         showToast('✓ Posted to the wall!');
       } catch (err) {
