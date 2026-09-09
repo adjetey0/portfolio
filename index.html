@@ -6,6 +6,8 @@
   <title>nii adjetey</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
 </head>
 <body>
   <!-- ===== HEADER ===== -->
@@ -382,21 +384,41 @@
   <section id="wall">
     <div class="container">
       <h1 class="sub-title">Sign My <span>Wall</span></h1>
-      <p class="wall-subtext">Leave a note, share a memory, or comment on the work — it'll show up here for everyone.</p>
+      <p class="wall-subtext">Leave a note, share a memory, or comment on the work.</p>
 
-      <form id="wall-form" class="wall-form">
-        <div class="wall-form-row">
-          <input type="text" id="wall-name" placeholder="Your Name" maxlength="40" required>
-        </div>
-        <textarea id="wall-message" rows="3" placeholder="Say something..." maxlength="400" required></textarea>
-        <button type="submit" class="btn" id="wall-submit-btn">Post to Wall</button>
-      </form>
+      <div class="wall-toolbar">
+        <button id="wall-sign-btn" class="wall-toolbar-btn wall-sign-btn">
+          <i class="fa-solid fa-signature"></i> Sign
+        </button>
+        <button id="wall-shuffle-btn" class="wall-toolbar-btn wall-icon-btn" title="Shuffle layout">
+          <i class="fa-solid fa-shuffle"></i>
+        </button>
+        <button id="wall-refresh-btn" class="wall-toolbar-btn wall-icon-btn" title="Refresh">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+        <span class="wall-count" id="wall-count">0 notes</span>
+      </div>
 
       <div id="wall-posts" class="wall-grid">
         <p class="wall-loading" id="wall-loading">Loading wall…</p>
       </div>
     </div>
   </section>
+
+  <!-- ===== WALL: SIGN MODAL ===== -->
+  <div id="wall-sign-modal" class="nd-modal-backdrop" onclick="closeWallModal(event)">
+    <div class="nd-modal wall-sign-modal">
+      <h3>Sign the Wall</h3>
+      <form id="wall-form" class="wall-form">
+        <input type="text" id="wall-name" placeholder="Your Name" maxlength="40" required>
+        <textarea id="wall-message" rows="3" placeholder="Say something..." maxlength="400" required></textarea>
+        <div class="wall-sign-actions">
+          <button type="submit" class="btn" id="wall-submit-btn">Post to Wall</button>
+          <button type="button" class="nd-close-btn" onclick="closeWallModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- ===== LIGHTBOX ===== -->
   <div id="lightbox" class="nd-modal-backdrop" onclick="closeLightbox(event)">
@@ -816,9 +838,15 @@
     const wallPostsEl = document.getElementById('wall-posts');
     const wallLoading = document.getElementById('wall-loading');
     const submitBtn = document.getElementById('wall-submit-btn');
+    const wallCountEl = document.getElementById('wall-count');
+    const wallSignBtn = document.getElementById('wall-sign-btn');
+    const wallSignModal = document.getElementById('wall-sign-modal');
+    const wallShuffleBtn = document.getElementById('wall-shuffle-btn');
+    const wallRefreshBtn = document.getElementById('wall-refresh-btn');
 
     // Basic client-side rate limit: 1 post per 30 seconds per browser
     const WALL_COOLDOWN_MS = 30000;
+    let latestSnapshot = null;
 
     function escapeHTML(str) {
       const div = document.createElement('div');
@@ -826,24 +854,28 @@
       return div.innerHTML;
     }
 
-    function timeAgo(date) {
+    function toHandle(name) {
+      return '@' + name.toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 20);
+    }
+
+    function formatDate(date) {
       if (!date) return 'just now';
-      const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
-      if (seconds < 60) return 'just now';
-      const minutes = Math.floor(seconds / 60);
-      if (minutes < 60) return minutes + 'm ago';
-      const hours = Math.floor(minutes / 60);
-      if (hours < 24) return hours + 'h ago';
-      const days = Math.floor(hours / 24);
-      return days + 'd ago';
+      return date.toLocaleDateString(undefined, { month: 'short', day: '2-digit', year: 'numeric' });
+    }
+
+    function randomTilt() {
+      return (Math.random() * 4 - 2).toFixed(2); // -2deg to 2deg
     }
 
     function renderPosts(snapshot) {
+      latestSnapshot = snapshot;
       wallLoading.remove();
       wallPostsEl.innerHTML = '';
 
+      wallCountEl.textContent = snapshot.size + (snapshot.size === 1 ? ' note' : ' notes');
+
       if (snapshot.empty) {
-        wallPostsEl.innerHTML = '<p class="wall-empty">No posts yet — be the first to sign the wall!</p>';
+        wallPostsEl.innerHTML = '<p class="wall-empty">No notes yet — be the first to sign the wall!</p>';
         return;
       }
 
@@ -851,12 +883,14 @@
         const data = docSnap.data();
         const card = document.createElement('div');
         card.className = 'wall-card';
+        card.style.transform = 'rotate(' + randomTilt() + 'deg)';
         const ts = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate() : null;
         card.innerHTML =
+          '<p class="wall-card-name">' + escapeHTML(data.name) + '</p>' +
           '<p class="wall-card-message">' + escapeHTML(data.message) + '</p>' +
-          '<div class="wall-card-meta">' +
-            '<span class="wall-card-name">' + escapeHTML(data.name) + '</span>' +
-            '<span class="wall-card-time">' + timeAgo(ts) + '</span>' +
+          '<div class="wall-card-footer">' +
+            '<span class="wall-card-handle">' + escapeHTML(toHandle(data.name)) + '</span>' +
+            '<span class="wall-card-time">' + formatDate(ts) + '</span>' +
           '</div>';
         wallPostsEl.appendChild(card);
       });
@@ -866,6 +900,31 @@
     onSnapshot(wallQuery, renderPosts, function (err) {
       console.error('Wall load error:', err);
       wallLoading.textContent = 'Could not load the wall right now.';
+    });
+
+    // ===== Toolbar: Sign modal =====
+    wallSignBtn.addEventListener('click', function () {
+      wallSignModal.classList.add('active');
+    });
+
+    function closeWallModal(e) {
+      if (e && e.target !== wallSignModal) return;
+      wallSignModal.classList.remove('active');
+    }
+    window.closeWallModal = closeWallModal;
+
+    // ===== Toolbar: Shuffle (re-randomize card tilt) =====
+    wallShuffleBtn.addEventListener('click', function () {
+      document.querySelectorAll('.wall-card').forEach(function (card) {
+        card.style.transform = 'rotate(' + randomTilt() + 'deg)';
+      });
+    });
+
+    // ===== Toolbar: Refresh =====
+    wallRefreshBtn.addEventListener('click', function () {
+      wallRefreshBtn.classList.add('spinning');
+      if (latestSnapshot) renderPosts(latestSnapshot);
+      setTimeout(function () { wallRefreshBtn.classList.remove('spinning'); }, 500);
     });
 
     wallForm.addEventListener('submit', async function (e) {
@@ -892,6 +951,7 @@
         });
         localStorage.setItem('wallLastPostAt', String(Date.now()));
         wallForm.reset();
+        closeWallModal();
         showToast('✓ Posted to the wall!');
       } catch (err) {
         console.error('Wall post error:', err);
