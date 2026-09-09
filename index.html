@@ -333,37 +333,50 @@
     <div class="container">
       <h1 class="sub-title">My <span>Album</span></h1>
 
-      <div class="album-tabs">
-        <button class="album-tab active-tab-btn" data-filter="all">All</button>
-        <button class="album-tab" data-filter="me">Me</button>
-        <button class="album-tab" data-filter="craft">Craft</button>
-        <button class="album-tab" data-filter="events">Events</button>
+      <div class="album-meta">
+        <span class="album-meta-left">
+          <i class="fa-solid fa-camera"></i>
+          Visual Archive (<span id="album-count">0</span> photos)
+        </span>
+        <div class="view-toggle">
+          <button class="view-toggle-btn active-view-btn" data-view="deck">
+            <i class="fa-solid fa-layer-group"></i> Deck
+          </button>
+          <button class="view-toggle-btn" data-view="grid">
+            <i class="fa-solid fa-table-cells"></i> Grid
+          </button>
+        </div>
       </div>
 
-      <div class="album-grid">
-
-        <div class="album-item" data-category="me">
-          <img src="images/album/me-1.jpg" alt="Portrait" loading="lazy">
-          <div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      <!-- DECK VIEW -->
+      <div id="album-deck-view" class="album-deck-view">
+        <div class="deck-stage" id="deck-stage"></div>
+        <div class="deck-controls">
+          <button class="cycle-stack-btn" id="cycle-stack-btn">
+            Cycle Stack <i class="fa-solid fa-chevron-right"></i>
+          </button>
+          <span class="deck-showing" id="deck-showing"></span>
         </div>
-
-        <div class="album-item" data-category="craft">
-          <img src="images/album/craft-1.jpg" alt="Working on a project" loading="lazy">
-          <div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
-
-        <div class="album-item" data-category="events">
-          <img src="images/album/event-1.jpg" alt="At an event" loading="lazy">
-          <div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
-
-        <!--
-          Add more photos by duplicating an .album-item block above.
-          Set data-category to "me", "craft", or "events".
-          Put your image files in images/album/ and update the src + alt.
-        -->
-
       </div>
+
+      <!-- GRID VIEW -->
+      <div id="album-grid-view" class="album-grid"></div>
+
+      <!--
+        ===== PHOTO SOURCE =====
+        This is the ONLY place you need to edit to add/remove album photos.
+        Add one <img> per photo. No categories needed — just src + alt.
+        Put your image files in images/album/.
+      -->
+      <div id="album-source" style="display:none;">
+        <img src="images/album/photo-1.jpg" alt="Photo 1">
+        <img src="images/album/photo-2.jpg" alt="Photo 2">
+        <img src="images/album/photo-3.jpg" alt="Photo 3">
+        <img src="images/album/photo-4.jpg" alt="Photo 4">
+        <img src="images/album/photo-5.jpg" alt="Photo 5">
+        <img src="images/album/photo-6.jpg" alt="Photo 6">
+      </div>
+
     </div>
   </section>
 
@@ -663,51 +676,107 @@
       });
     });
 
-    // ===== ALBUM: FILTER TABS =====
-    const albumTabs = document.querySelectorAll('.album-tab');
-    const albumItems = document.querySelectorAll('.album-item');
-
-    albumTabs.forEach(function(tab) {
-      tab.addEventListener('click', function () {
-        albumTabs.forEach(function(t) { t.classList.remove('active-tab-btn'); });
-        this.classList.add('active-tab-btn');
-        const filter = this.dataset.filter;
-
-        albumItems.forEach(function(item) {
-          const match = filter === 'all' || item.dataset.category === filter;
-          item.classList.toggle('hide', !match);
-        });
-      });
+    // ===== ALBUM: DECK + GRID (data-driven from #album-source) =====
+    const albumPhotos = Array.from(document.querySelectorAll('#album-source img')).map(function (img) {
+      return { src: img.getAttribute('src'), alt: img.getAttribute('alt') || '' };
     });
 
-    // ===== ALBUM: LIGHTBOX =====
-    let _visibleItems = [];
-    let _lightboxIndex = 0;
+    document.getElementById('album-count').textContent = albumPhotos.length;
 
-    function getVisibleAlbumItems() {
-      return Array.from(document.querySelectorAll('.album-item:not(.hide)'));
+    const deckStage = document.getElementById('deck-stage');
+    const deckShowing = document.getElementById('deck-showing');
+    const cycleStackBtn = document.getElementById('cycle-stack-btn');
+    const gridView = document.getElementById('album-grid-view');
+    const deckView = document.getElementById('album-deck-view');
+    const viewToggleBtns = document.querySelectorAll('.view-toggle-btn');
+
+    const DECK_SIZE = 4;
+    let deckStart = 0;
+
+    function renderDeck() {
+      deckStage.innerHTML = '';
+      if (!albumPhotos.length) {
+        deckShowing.textContent = 'No photos yet';
+        return;
+      }
+      const visible = [];
+      for (let i = 0; i < Math.min(DECK_SIZE, albumPhotos.length); i++) {
+        visible.push(albumPhotos[(deckStart + i) % albumPhotos.length]);
+      }
+      visible.forEach(function (photo, i) {
+        const card = document.createElement('div');
+        card.className = 'deck-card deck-card-' + i;
+        card.innerHTML = '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy">';
+        card.addEventListener('click', function () {
+          const globalIndex = albumPhotos.indexOf(photo);
+          openLightboxFromAlbum(globalIndex);
+        });
+        deckStage.appendChild(card);
+      });
+
+      const end = Math.min(deckStart + DECK_SIZE, albumPhotos.length);
+      deckShowing.textContent = 'Showing ' + (deckStart + 1) + '\u2013' + end + ' of ' + albumPhotos.length;
     }
 
-    albumItems.forEach(function(item) {
-      item.addEventListener('click', function () {
-        _visibleItems = getVisibleAlbumItems();
-        _lightboxIndex = _visibleItems.indexOf(this);
-        openLightboxAt(_lightboxIndex);
+    cycleStackBtn.addEventListener('click', function () {
+      deckStart = (deckStart + DECK_SIZE) % albumPhotos.length;
+      renderDeck();
+    });
+
+    function renderGrid() {
+      gridView.innerHTML = '';
+      if (!albumPhotos.length) {
+        gridView.innerHTML = '<p class="wall-empty">No photos yet.</p>';
+        return;
+      }
+      albumPhotos.forEach(function (photo, index) {
+        const item = document.createElement('div');
+        item.className = 'album-item';
+        item.innerHTML =
+          '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy">' +
+          '<div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>';
+        item.addEventListener('click', function () {
+          openLightboxFromAlbum(index);
+        });
+        gridView.appendChild(item);
+      });
+    }
+
+    viewToggleBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        viewToggleBtns.forEach(function (b) { b.classList.remove('active-view-btn'); });
+        btn.classList.add('active-view-btn');
+        const view = btn.dataset.view;
+        deckView.style.display = view === 'deck' ? '' : 'none';
+        gridView.style.display = view === 'grid' ? '' : 'none';
       });
     });
 
-    function openLightboxAt(index) {
-      if (!_visibleItems.length) _visibleItems = getVisibleAlbumItems();
-      _lightboxIndex = (index + _visibleItems.length) % _visibleItems.length;
-      const img = _visibleItems[_lightboxIndex].querySelector('img');
-      document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox-caption').textContent = img.alt || '';
+    renderDeck();
+    renderGrid();
+    gridView.style.display = 'none';
+
+    // ===== ALBUM: LIGHTBOX =====
+    let _lightboxIndex = 0;
+
+    function openLightboxFromAlbum(index) {
+      _lightboxIndex = index;
+      showLightboxPhoto();
+    }
+
+    function showLightboxPhoto() {
+      if (!albumPhotos.length) return;
+      _lightboxIndex = (_lightboxIndex + albumPhotos.length) % albumPhotos.length;
+      const photo = albumPhotos[_lightboxIndex];
+      document.getElementById('lightbox-img').src = photo.src;
+      document.getElementById('lightbox-caption').textContent = photo.alt || '';
       document.getElementById('lightbox').classList.add('active');
     }
 
     function navLightbox(dir, e) {
       if (e) e.stopPropagation();
-      openLightboxAt(_lightboxIndex + dir);
+      _lightboxIndex += dir;
+      showLightboxPhoto();
     }
 
     function closeLightbox(e) {
