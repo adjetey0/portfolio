@@ -882,13 +882,50 @@ nav ul li a:hover::after {
 
 /* ===== SIGN MODAL ===== */
 .wall-sign-modal {
-  max-width: 480px;
+  max-width: 520px;
+  width: 90%;
   text-align: left;
+  padding: 35px 35px 30px;
 }
 
-.wall-sign-modal h3 {
-  text-align: center;
-  margin-bottom: 20px;
+.wall-sign-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.wall-sign-header h3 {
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+.wall-sign-subtitle {
+  color: #999;
+  font-size: 13px;
+  margin: 0;
+}
+
+.wall-sign-close {
+  background: #0a0a0a;
+  border: 2px solid #222;
+  color: #999;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.wall-sign-close:hover {
+  border-color: #ff004f;
+  color: #fff;
 }
 
 .wall-form {
@@ -897,15 +934,39 @@ nav ul li a:hover::after {
   gap: 18px;
 }
 
+.wall-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.wall-input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wall-input-icon i {
+  position: absolute;
+  left: 16px;
+  color: #666;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.wall-input-icon input {
+  padding-left: 40px !important;
+}
+
 .wall-form input,
 .wall-form textarea {
   width: 100%;
-  padding: 16px;
+  padding: 14px 16px;
   background: #0a0a0a;
   border: 2px solid #222;
   border-radius: 10px;
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -914,7 +975,7 @@ nav ul li a:hover::after {
 
 .wall-form input::placeholder,
 .wall-form textarea::placeholder {
-  color: #888;
+  color: #666;
 }
 
 .wall-form input:focus,
@@ -923,13 +984,45 @@ nav ul li a:hover::after {
   box-shadow: 0 0 15px rgba(255, 0, 79, 0.2);
 }
 
-.wall-sign-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
+.wall-sig-preview {
+  background: #0a0a0a;
+  border: 2px solid #222;
+  border-radius: 10px;
+  padding: 14px 16px;
 }
 
-.wall-sign-actions .btn {
+.wall-sig-label {
+  display: block;
+  color: #666;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.wall-sig-text {
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.wall-sign-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.wall-char-count {
+  color: #666;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.wall-sign-footer .btn {
   padding: 12px 30px;
 }
 
@@ -1627,16 +1720,29 @@ footer p {
   }
 
   .wall-sign-modal {
-    padding: 30px 22px;
+    padding: 26px 22px;
   }
 
-  .wall-sign-actions {
-    flex-direction: column;
+  .wall-sign-header h3 {
+    font-size: 19px;
   }
 
-  .wall-sign-actions .btn,
-  .wall-sign-actions .nd-close-btn {
+  .wall-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .wall-sign-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .wall-sign-footer .btn {
     width: 100%;
+  }
+
+  .wall-char-count {
+    text-align: center;
   }
 
   .wall-grid {
