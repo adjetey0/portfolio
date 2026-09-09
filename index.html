@@ -4,15 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>nii adjetey</title>
-  <script>
-    // Apply saved theme before first paint to avoid a flash of the wrong theme
-    (function () {
-      var saved = localStorage.getItem('nd-theme');
-      if (saved === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -24,6 +15,7 @@
         <div class="logo">
           <h1><span>B</span>ISMARCK</h1>
         </div>
+        <i class="fas fa-bars" id="menu-icon"></i>
         <ul id="nav-menu">
           <li><a href="#header" onclick="closeMenu()">Home</a></li>
           <li><a href="#about" onclick="closeMenu()">About</a></li>
@@ -34,12 +26,6 @@
           <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
           <li><a href="#dashboard" onclick="closeMenu()">Dashboard</a></li>
         </ul>
-        <div class="nav-right">
-          <button id="theme-toggle" title="Toggle theme" aria-label="Toggle light/dark theme">
-            <i class="fa-solid fa-moon" id="theme-toggle-icon"></i>
-          </button>
-          <i class="fas fa-bars" id="menu-icon"></i>
-        </div>
       </nav>
       <div class="header-text">
         <p>Embedded Engineer/ Web Developer/ Data Analyst</p>
@@ -568,30 +554,6 @@
       }
     }
 
-    // ===== THEME TOGGLE =====
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleIcon = document.getElementById('theme-toggle-icon');
-    const htmlEl = document.documentElement;
-
-    function syncThemeIcon() {
-      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
-      themeToggleIcon.classList.toggle('fa-moon', !isDark);
-      themeToggleIcon.classList.toggle('fa-sun', isDark);
-    }
-    syncThemeIcon();
-
-    themeToggleBtn.addEventListener('click', function () {
-      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        htmlEl.removeAttribute('data-theme');
-        localStorage.setItem('nd-theme', 'light');
-      } else {
-        htmlEl.setAttribute('data-theme', 'dark');
-        localStorage.setItem('nd-theme', 'dark');
-      }
-      syncThemeIcon();
-    });
-
     // Show toast function
     function showToast(message, duration = 3000) {
       const toast = document.getElementById("toast");
@@ -769,16 +731,15 @@
       limit, onSnapshot, serverTimestamp
     } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-    // ⚠️ Replace with your own Firebase project config (Project settings → General → Your apps → SDK setup)
     const firebaseConfig = {
-    apiKey: "AIzaSyCGDJeB7hb3pwS1Y2dVswHG4htoDf9HFO8",
-    authDomain: "myportfolio-940e2.firebaseapp.com",
-    projectId: "myportfolio-940e2",
-    storageBucket: "myportfolio-940e2.firebasestorage.app",
-    messagingSenderId: "718368808589",
-    appId: "1:718368808589:web:5579f0f59402bc036a8cc4",
-    measurementId: "G-2QT2G8SWZW"
-  };
+      apiKey: "AIzaSyCGDJeB7hb3pwS1Y2dVswHG4htoDf9HFO8",
+      authDomain: "myportfolio-940e2.firebaseapp.com",
+      projectId: "myportfolio-940e2",
+      storageBucket: "myportfolio-940e2.firebasestorage.app",
+      messagingSenderId: "718368808589",
+      appId: "1:718368808589:web:5579f0f59402bc036a8cc4",
+      measurementId: "G-2QT2G8SWZW"
+    };
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
