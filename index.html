@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   <!-- ===== HEADER ===== -->
@@ -384,19 +385,28 @@
   <section id="wall">
     <div class="container">
       <h1 class="sub-title">Sign My <span>Wall</span></h1>
-      <p class="wall-subtext">Leave a note, share a memory, or comment on the work.</p>
 
-      <div class="wall-toolbar">
-        <button id="wall-sign-btn" class="wall-toolbar-btn wall-sign-btn">
-          <i class="fa-solid fa-signature"></i> Sign
-        </button>
-        <button id="wall-shuffle-btn" class="wall-toolbar-btn wall-icon-btn" title="Shuffle layout">
-          <i class="fa-solid fa-shuffle"></i>
-        </button>
-        <button id="wall-refresh-btn" class="wall-toolbar-btn wall-icon-btn" title="Refresh">
-          <i class="fa-solid fa-rotate-right"></i>
-        </button>
-        <span class="wall-count" id="wall-count">0 notes</span>
+      <div class="wall-toolbar-wrap">
+        <div class="wall-toolbar">
+          <button id="wall-sign-btn" class="wall-pill-btn wall-sign-pill">
+            <i class="fa-solid fa-signature"></i> Sign
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <button id="wall-snapshot-btn" class="wall-pill-btn">
+            <i class="fa-solid fa-camera"></i> Snapshot
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <button id="wall-shuffle-btn" class="wall-pill-btn wall-pill-icon" title="Shuffle layout">
+            <i class="fa-solid fa-shuffle"></i>
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <button id="wall-refresh-btn" class="wall-pill-btn wall-pill-icon" title="Refresh">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <span class="wall-count" id="wall-count">0 notes</span>
+        </div>
+        <p class="wall-subtext">Tap the share icon on any card, or hit Snapshot, to export a branded image.</p>
       </div>
 
       <div id="wall-posts" class="wall-grid">
@@ -868,6 +878,7 @@
     const wallSignModal = document.getElementById('wall-sign-modal');
     const wallShuffleBtn = document.getElementById('wall-shuffle-btn');
     const wallRefreshBtn = document.getElementById('wall-refresh-btn');
+    const wallSnapshotBtn = document.getElementById('wall-snapshot-btn');
     const wallNameInput = document.getElementById('wall-name');
     const wallHandleInput = document.getElementById('wall-handle');
     const wallMessageInput = document.getElementById('wall-message');
@@ -975,6 +986,67 @@
       wallRefreshBtn.classList.add('spinning');
       if (latestSnapshot) renderPosts(latestSnapshot);
       setTimeout(function () { wallRefreshBtn.classList.remove('spinning'); }, 500);
+    });
+
+    // ===== Toolbar: Snapshot (download all current notes as one image) =====
+    wallSnapshotBtn.addEventListener('click', function () {
+      const cardCount = wallPostsEl.querySelectorAll('.wall-card').length;
+      if (!cardCount) {
+        showToast('✋ No notes to snapshot yet.');
+        return;
+      }
+
+      wallSnapshotBtn.disabled = true;
+      const originalHTML = wallSnapshotBtn.innerHTML;
+      wallSnapshotBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Capturing...';
+
+      // Build an off-screen wrapper: cloned grid (flattened, no tilt) + branded footer
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.left = '-9999px';
+      wrapper.style.top = '0';
+      wrapper.style.width = wallPostsEl.offsetWidth + 'px';
+      wrapper.style.background = '#000';
+      wrapper.style.padding = '32px';
+      wrapper.style.fontFamily = "'Poppins', sans-serif";
+
+      const gridClone = wallPostsEl.cloneNode(true);
+      gridClone.querySelectorAll('.wall-card').forEach(function (card) {
+        card.style.transform = 'none'; // flatten tilt for a clean grid snapshot
+      });
+      wrapper.appendChild(gridClone);
+
+      const footer = document.createElement('div');
+      footer.style.display = 'flex';
+      footer.style.justifyContent = 'space-between';
+      footer.style.alignItems = 'center';
+      footer.style.marginTop = '24px';
+      footer.style.paddingTop = '20px';
+      footer.style.borderTop = '2px solid #222';
+      footer.innerHTML =
+        '<span style="color:#ff004f;font-weight:700;font-size:20px;">BISMARCK</span>' +
+        '<span style="color:#888;font-size:13px;">' + cardCount + ' notes &middot; adjetey.vercel.app/#wall</span>';
+      wrapper.appendChild(footer);
+
+      document.body.appendChild(wrapper);
+
+      html2canvas(wrapper, { backgroundColor: '#000000', scale: 2, useCORS: true })
+        .then(function (canvas) {
+          const link = document.createElement('a');
+          link.download = 'my-wall-snapshot-' + Date.now() + '.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          showToast('✓ Snapshot downloaded!');
+        })
+        .catch(function (err) {
+          console.error('Snapshot error:', err);
+          showToast('✗ Could not create snapshot.');
+        })
+        .finally(function () {
+          document.body.removeChild(wrapper);
+          wallSnapshotBtn.disabled = false;
+          wallSnapshotBtn.innerHTML = originalHTML;
+        });
     });
 
     wallForm.addEventListener('submit', async function (e) {
