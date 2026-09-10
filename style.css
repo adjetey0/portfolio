@@ -818,20 +818,38 @@ nav ul li a:hover::after {
   margin: 0 auto 40px;
 }
 
-.wall-toolbar {
+.wall-toolbar-wrap {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   margin-bottom: 45px;
-  flex-wrap: wrap;
 }
 
-.wall-toolbar-btn {
+.wall-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   background: #111;
   border: 2px solid #222;
-  color: #fff;
-  padding: 12px 24px;
+  border-radius: 40px;
+  padding: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wall-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: #2a2a2a;
+  margin: 0 2px;
+}
+
+.wall-pill-btn {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  padding: 10px 18px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 600;
@@ -839,34 +857,38 @@ nav ul li a:hover::after {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   transition: all 0.3s ease;
 }
 
-.wall-toolbar-btn:hover {
-  border-color: #ff004f;
-  transform: translateY(-2px);
+.wall-pill-btn:hover {
+  background: #1a1a1a;
+  color: #fff;
 }
 
-.wall-sign-btn {
+.wall-pill-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.wall-sign-pill {
   background: #ff004f;
-  border-color: #ff004f;
+  color: #fff;
 }
 
-.wall-sign-btn:hover {
+.wall-sign-pill:hover {
   background: #e6003d;
+  color: #fff;
 }
 
-.wall-icon-btn {
-  width: 46px;
-  height: 46px;
+.wall-pill-icon {
+  width: 40px;
+  height: 40px;
   padding: 0;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 16px;
 }
 
-.wall-icon-btn.spinning i {
+.wall-pill-btn.spinning i {
   animation: spin 0.5s linear;
 }
 
@@ -878,6 +900,8 @@ nav ul li a:hover::after {
 .wall-count {
   color: #888;
   font-size: 13px;
+  padding: 0 10px;
+  white-space: nowrap;
 }
 
 /* ===== SIGN MODAL ===== */
@@ -1709,14 +1733,19 @@ footer p {
     padding: 0 5%;
   }
 
-  .wall-toolbar-btn {
-    padding: 10px 18px;
+  .wall-pill-btn {
+    padding: 8px 14px;
     font-size: 13px;
   }
 
-  .wall-icon-btn {
-    width: 40px;
-    height: 40px;
+  .wall-pill-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .wall-count {
+    padding: 0 6px;
+    font-size: 12px;
   }
 
   .wall-sign-modal {
