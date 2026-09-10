@@ -20,6 +20,14 @@ body {
   background-position: center;
 }
 
+/* ===== SUB-PAGE TOP NAV BAR ===== */
+.page-topbar {
+  width: 100%;
+  background: #0a0a0a;
+  border-bottom: 2px solid #161616;
+  padding: 6px 0;
+}
+
 .container {
   padding: 10px 10%;
 }
@@ -30,6 +38,11 @@ nav {
   justify-content: space-between;
   flex-wrap: wrap;
   position: relative;
+}
+
+.logo h1 a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .logo h1 span {
@@ -71,8 +84,13 @@ nav ul li a::after {
   border-radius: 2px;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active-page::after {
   width: 100%;
+}
+
+nav ul li a.active-page {
+  color: #ff004f;
 }
 
 .header-text {
