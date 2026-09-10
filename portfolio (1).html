@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nii adjetey — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
+</head>
+<body>
+  <!-- ===== TOP NAV BAR ===== -->
+  <header class="page-topbar">
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
+        </div>
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <ul id="nav-menu">
+          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+          <li><a href="about.html" onclick="closeMenu()">About</a></li>
+          <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+          <li><a href="portfolio.html" class="active-page" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="album.html" onclick="closeMenu()">Album</a></li>
+          <li><a href="wall.html" onclick="closeMenu()">Wall</a></li>
+          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+          <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== NOT-DEPLOYED MODAL ===== -->
+  <div id="not-deployed-modal" class="nd-modal-backdrop" onclick="closeNDModal(event)">
+    <div class="nd-modal">
+      <div class="nd-modal-icon">
+        <i class="fa-solid fa-code-branch"></i>
+      </div>
+      <h3>Not Deployed Yet</h3>
+      <p>This project is currently in development and hasn't been deployed to a live server yet. You can still check out the source code on GitHub!</p>
+      <div class="nd-modal-actions">
+        <button class="nd-github-btn" onclick="openGithubFromModal()">
+          <i class="fa-brands fa-github"></i> View on GitHub
+        </button>
+        <button class="nd-close-btn" onclick="closeNDModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PORTFOLIO SECTION ===== -->
+  <section id="portfolio">
+    <div class="container">
+      <h1 class="sub-title">My <span>Portfolio</span></h1>
+      
+      <div class="portfolio-grid">
+
+        <!-- Project 1 -->
+        <div class="portfolio-card"
+             data-github="https://github.com/adjetey0/verifyfacts-extension"
+             data-live="">
+          <div class="portfolio-image">
+            <img src="images/AI &Machine Learning.png" alt="AI & Machine Learning Project">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h3>AI & Machine Learning</h3>
+                <p>An AI-powered browser extension that verifies the authenticity of news articles, social media posts, and web content in real time using a custom backend server and large language models.</p>
+                <div class="portfolio-links">
+                  <a href="#" onclick="handleLiveClick(event, this)"><i class="fa-solid fa-link"></i> View Project</a>
+                  <a href="#" onclick="handleGithubClick(event, this)"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>AI & Machine Learning</h3>
+            <div class="portfolio-tags">
+              <span>JavaScript</span>
+              <span>Node.js</span>
+              <span>OpenRouter</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="portfolio-card"
+             data-github="https://github.com/adjetey0/FORG"
+             data-live="">
+          <div class="portfolio-image">
+            <img src="images/CLI Tooling.jpeg" alt="CLI Tooling / Developer Tooling">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h3>CLI Tooling</h3>
+                <p>FORG automates a repetitive manual task (searching for files) and schedules background work via Windows Task Scheduler.</p>
+                <div class="portfolio-links">
+                  <a href="#" onclick="handleLiveClick(event, this)"><i class="fa-solid fa-link"></i> View Project</a>
+                  <a href="#" onclick="handleGithubClick(event, this)"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>CLI Tooling</h3>
+            <div class="portfolio-tags">
+              <span>PowerShell</span>
+              <span>Windows PowerShell 5.1</span>
+              <span>JSON (flat files)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="portfolio-card"
+             data-github="https://github.com/adjetey0/YOUR-BACKEND-API-REPO"
+             data-live="">
+          <div class="portfolio-image">
+            <img src="images/mindease.png" alt="Mental health support chatbot">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h3>Mental health support chatbot</h3>
+                <p>A conversational AI assistant designed to provide support and resources for individuals experiencing mental health challenges.</p>
+                <div class="portfolio-links">
+                  <a href="#" onclick="handleLiveClick(event, this)"><i class="fa-solid fa-link"></i> View Project</a>
+                  <a href="#" onclick="handleGithubClick(event, this)"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Backend API System</h3>
+            <div class="portfolio-tags">
+              <span>React Native</span>
+              <span>Python Flask</span>
+              <span>PostgreSQL</span>
+              <span>REST API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="portfolio-card"
+             data-github="https://github.com/adjetey0/AQ-GLD"
+             data-live="https://uglyboy77.github.io/AQ-GLD-G2/authentication/register-account/register.html">
+          <div class="portfolio-image">
+            <img src="images/AQGLD.png" alt="Embedded Systems Project">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h3>Embedded Systems Project</h3>
+                <p>A custom embedded systems solution for a smart home automation platform, integrating IoT sensors, microcontrollers, and cloud connectivity.</p>
+                <div class="portfolio-links">
+                  <a href="#" onclick="handleLiveClick(event, this)"><i class="fa-solid fa-link"></i> View Project</a>
+                  <a href="#" onclick="handleGithubClick(event, this)"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Embedded Systems Project</h3>
+            <div class="portfolio-tags">
+              <span>Arduino IDE</span>
+              <span>ESP32</span>
+              <span>Arduino Mega</span>
+              <span>MQ-5 Gas Sensor</span>
+              <span>Buzzer</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="portfolio-card"
+             data-github="https://github.com/adjetey0/BuildexAlpha"
+             data-live="https://buildex-alpha.vercel.app/">
+          <div class="portfolio-image">
+            <img src="images/ai-pm.png" alt="AI Featured Project Management System">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h3>AI Project Management System</h3>
+                <p>An AI-powered project management platform that auto-generates tasks, assigns team members by workload, predicts deadlines, and surfaces bottlenecks in real time.</p>
+                <div class="portfolio-links">
+                  <a href="#" onclick="handleLiveClick(event, this)"><i class="fa-solid fa-link"></i> View Project</a>
+                  <a href="#" onclick="handleGithubClick(event, this)"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>AI Project Management System</h3>
+            <div class="portfolio-tags">
+              <span>Claude AI</span>
+              <span>Python / FastAPI</span>
+              <span>React / Next.js</span>
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="portfolio-card"
+             data-github="https://github.com/adjetey0/QuickPOS-System"
+             data-live="">
+          <div class="portfolio-image">
+            <img src="images/pos-system.png" alt="Point of Sale System">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h3>Point of Sale System</h3>
+                <p>A full-featured Point of Sale system for supermarkets with sales tracking, inventory management, customer records, reports & analytics, and multi-user role support.</p>
+                <div class="portfolio-links">
+                  <a href="#" onclick="handleLiveClick(event, this)"><i class="fa-solid fa-link"></i> View Project</a>
+                  <a href="#" onclick="handleGithubClick(event, this)"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Point of Sale System</h3>
+            <div class="portfolio-tags">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>PostgreSQL</span>
+              <span>REST API</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Adjei Bismarck. All Rights Reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/niiadjetey" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/adjetey0" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://x.com/mradjeteynii" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/west.xds" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (menuIcon && navMenu) {
+      menuIcon.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (menuIcon.classList.contains('fa-bars')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times');
+        } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    function closeMenu() {
+      if (navMenu) {
+        navMenu.classList.remove('active');
+      }
+      if (menuIcon) {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // ===== PORTFOLIO LINK LOGIC =====
+    let _currentGithubUrl = '';
+
+    function getCardData(el) {
+      const card = el.closest('.portfolio-card');
+      return {
+        github: card.dataset.github || '',
+        live:   card.dataset.live   || ''
+      };
+    }
+
+    function handleLiveClick(e, el) {
+      e.preventDefault();
+      const { github, live } = getCardData(el);
+      if (live && live.trim() !== '') {
+        window.open(live, '_blank', 'noopener noreferrer');
+      } else {
+        _currentGithubUrl = github;
+        document.getElementById('not-deployed-modal').classList.add('active');
+      }
+    }
+
+    function handleGithubClick(e, el) {
+      e.preventDefault();
+      const { github } = getCardData(el);
+      if (github && github.trim() !== '') {
+        window.open(github, '_blank', 'noopener noreferrer');
+      }
+    }
+
+    function openGithubFromModal() {
+      if (_currentGithubUrl) {
+        window.open(_currentGithubUrl, '_blank', 'noopener noreferrer');
+      }
+      closeNDModal();
+    }
+
+    function closeNDModal(e) {
+      if (e && e.target !== document.getElementById('not-deployed-modal')) return;
+      document.getElementById('not-deployed-modal').classList.remove('active');
+      _currentGithubUrl = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('not-deployed-modal').classList.remove('active');
+        _currentGithubUrl = '';
+      }
+    });
+
+    // ===== TAP TO REVEAL OVERLAY ON MOBILE =====
+    document.querySelectorAll('.portfolio-card').forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        if (e.target.closest('.portfolio-links')) return;
+        const isActive = card.classList.contains('tapped');
+        document.querySelectorAll('.portfolio-card.tapped').forEach(function(c) {
+          c.classList.remove('tapped');
+        });
+        if (!isActive) card.classList.add('tapped');
+      });
+    });
+  </script>
+</body>
+</html>

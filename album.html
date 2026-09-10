@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nii adjetey — Album</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
+</head>
+<body>
+  <!-- ===== TOP NAV BAR ===== -->
+  <header class="page-topbar">
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
+        </div>
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <ul id="nav-menu">
+          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+          <li><a href="about.html" onclick="closeMenu()">About</a></li>
+          <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+          <li><a href="portfolio.html" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="album.html" class="active-page" onclick="closeMenu()">Album</a></li>
+          <li><a href="wall.html" onclick="closeMenu()">Wall</a></li>
+          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+          <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== ALBUM SECTION ===== -->
+  <section id="album">
+    <div class="container">
+      <h1 class="sub-title">My <span>Album</span></h1>
+
+      <div class="album-meta">
+        <span class="album-meta-left">
+          <i class="fa-solid fa-camera"></i>
+          Visual Archive (<span id="album-count">0</span> photos)
+        </span>
+        <div class="view-toggle">
+          <button class="view-toggle-btn active-view-btn" data-view="deck">
+            <i class="fa-solid fa-layer-group"></i> Deck
+          </button>
+          <button class="view-toggle-btn" data-view="grid">
+            <i class="fa-solid fa-table-cells"></i> Grid
+          </button>
+        </div>
+      </div>
+
+      <!-- DECK VIEW -->
+      <div id="album-deck-view" class="album-deck-view">
+        <div class="deck-stage" id="deck-stage"></div>
+        <div class="deck-controls">
+          <button class="cycle-stack-btn" id="cycle-stack-btn">
+            Cycle Stack <i class="fa-solid fa-chevron-right"></i>
+          </button>
+          <span class="deck-showing" id="deck-showing"></span>
+        </div>
+      </div>
+
+      <!-- GRID VIEW -->
+      <div id="album-grid-view" class="album-grid"></div>
+
+      <!--
+        ===== PHOTO SOURCE =====
+        This is the ONLY place you need to edit to add/remove album photos.
+        Add one <img> per photo. No categories needed — just src + alt.
+        Put your image files in images/album/.
+      -->
+      <div id="album-source" style="display:none;">
+        <img src="images/album/hackathon-strategy-session.jpg" alt="Strategizing with my teammate during the KNUST AI x Claude hackathon">
+        <img src="images/album/hackathon-winners-group.jpg" alt="Our team after winning the KNUST AI x Claude hackathon">
+        <img src="images/album/hackathon-medal-ceremony.jpg" alt="Receiving my medal at the hackathon closing ceremony">
+        <img src="images/album/hackathon-team-mega-ai.jpg" alt="Team Mega AI, hackathon winners">
+        <img src="images/album/mobile-dev-codefest.jpg" alt="Taking pictures with my colleagues during the Mobile Dev Codefest">
+        <img src="images/album/mdev-with-colleagues.jpg" alt="Sharing a moment with my colleagues at the Mobile Dev Codefest">
+        <img src="images/album/mobile-dev-group-picture.jpg" alt="Participating in the Mobile Dev Codefest">
+        <img src="images/album/mobile-dev-group-picture2.jpg" alt="With colleagues at the Mobile Dev Codefest">
+        <img src="images/album/sunday-service-with-sister.jpg" alt="With family after my Sunday service">
+        <img src="images/album/mom-portrait-1.jpg" alt="Portrait of my mom">
+        <img src="images/album/mom-portrait-2.jpg" alt="Portrait of my mom">
+        <img src="images/album/mom-portrait-3.jpg" alt="Portrait of my mom">
+        <img src="images/album/high-school-graduation.jpg" alt="Portrait of me in my high school graduation gown with my bestie and my sister" data-position="top">
+        <img src="images/album/Bestie.jpg" alt="Portrait of my bestie" data-position="top">
+        <img src="images/album/Bestfriend.jpeg" alt="Portrait of my Best friend, Oduro Enoch Nana Tabi">
+        <img src="images/album/Rep-your-school1.jpg" alt="Portrait of me in my high school uniform with my colleagues">
+        <img src="images/album/Rep-your-school2.jpg" alt="Portrait of me in my high school uniform with my high school mate. OLAG-OLAG">
+        <img src="images/album/Rep-your-school3.jpg" alt="Featured SMARTS in here. OLAG-SMARTS">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div id="lightbox" class="nd-modal-backdrop" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+      <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1, event)"><i class="fa-solid fa-chevron-left"></i></button>
+      <img id="lightbox-img" src="" alt="">
+      <button class="lightbox-nav lightbox-next" onclick="navLightbox(1, event)"><i class="fa-solid fa-chevron-right"></i></button>
+      <p id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Adjei Bismarck. All Rights Reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/niiadjetey" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/adjetey0" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://x.com/mradjeteynii" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/west.xds" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (menuIcon && navMenu) {
+      menuIcon.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (menuIcon.classList.contains('fa-bars')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times');
+        } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    function closeMenu() {
+      if (navMenu) {
+        navMenu.classList.remove('active');
+      }
+      if (menuIcon) {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // ===== ALBUM: DECK + GRID (data-driven from #album-source) =====
+    const albumPhotos = Array.from(document.querySelectorAll('#album-source img')).map(function (img) {
+      return {
+        src: img.getAttribute('src'),
+        alt: img.getAttribute('alt') || '',
+        position: img.getAttribute('data-position') || 'center'
+      };
+    });
+
+    document.getElementById('album-count').textContent = albumPhotos.length;
+
+    const deckStage = document.getElementById('deck-stage');
+    const deckShowing = document.getElementById('deck-showing');
+    const cycleStackBtn = document.getElementById('cycle-stack-btn');
+    const gridView = document.getElementById('album-grid-view');
+    const deckView = document.getElementById('album-deck-view');
+    const viewToggleBtns = document.querySelectorAll('.view-toggle-btn');
+
+    const DECK_SIZE = 4;
+    let deckStart = 0;
+
+    function renderDeck() {
+      deckStage.innerHTML = '';
+      if (!albumPhotos.length) {
+        deckShowing.textContent = 'No photos yet';
+        return;
+      }
+      const visible = [];
+      for (let i = 0; i < Math.min(DECK_SIZE, albumPhotos.length); i++) {
+        visible.push(albumPhotos[(deckStart + i) % albumPhotos.length]);
+      }
+      visible.forEach(function (photo, i) {
+        const card = document.createElement('div');
+        card.className = 'deck-card deck-card-' + i;
+        card.innerHTML = '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy" style="object-position: ' + photo.position + ';">';
+        card.addEventListener('click', function () {
+          const globalIndex = albumPhotos.indexOf(photo);
+          openLightboxFromAlbum(globalIndex);
+        });
+        deckStage.appendChild(card);
+      });
+
+      const end = Math.min(deckStart + DECK_SIZE, albumPhotos.length);
+      deckShowing.textContent = 'Showing ' + (deckStart + 1) + '\u2013' + end + ' of ' + albumPhotos.length;
+    }
+
+    cycleStackBtn.addEventListener('click', function () {
+      deckStart = (deckStart + DECK_SIZE) % albumPhotos.length;
+      renderDeck();
+    });
+
+    function renderGrid() {
+      gridView.innerHTML = '';
+      if (!albumPhotos.length) {
+        gridView.innerHTML = '<p class="wall-empty">No photos yet.</p>';
+        return;
+      }
+      albumPhotos.forEach(function (photo, index) {
+        const item = document.createElement('div');
+        item.className = 'album-item';
+        item.innerHTML =
+          '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy" style="object-position: ' + photo.position + ';">' +
+          '<div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>';
+        item.addEventListener('click', function () {
+          openLightboxFromAlbum(index);
+        });
+        gridView.appendChild(item);
+      });
+    }
+
+    viewToggleBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        viewToggleBtns.forEach(function (b) { b.classList.remove('active-view-btn'); });
+        btn.classList.add('active-view-btn');
+        const view = btn.dataset.view;
+        deckView.style.display = view === 'deck' ? '' : 'none';
+        gridView.style.display = view === 'grid' ? '' : 'none';
+      });
+    });
+
+    renderDeck();
+    renderGrid();
+    gridView.style.display = 'none';
+
+    // ===== ALBUM: LIGHTBOX =====
+    let _lightboxIndex = 0;
+
+    function openLightboxFromAlbum(index) {
+      _lightboxIndex = index;
+      showLightboxPhoto();
+    }
+
+    function showLightboxPhoto() {
+      if (!albumPhotos.length) return;
+      _lightboxIndex = (_lightboxIndex + albumPhotos.length) % albumPhotos.length;
+      const photo = albumPhotos[_lightboxIndex];
+      document.getElementById('lightbox-img').src = photo.src;
+      document.getElementById('lightbox-caption').textContent = photo.alt || '';
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function navLightbox(dir, e) {
+      if (e) e.stopPropagation();
+      _lightboxIndex += dir;
+      showLightboxPhoto();
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target !== document.getElementById('lightbox')) return;
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') navLightbox(1);
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+    });
+  </script>
+  </script>
+</body>
+</html>

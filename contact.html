@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nii adjetey — Contact</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+  <!-- ===== TOP NAV BAR ===== -->
+  <header class="page-topbar">
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
+        </div>
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <ul id="nav-menu">
+          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+          <li><a href="about.html" onclick="closeMenu()">About</a></li>
+          <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+          <li><a href="portfolio.html" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="album.html" onclick="closeMenu()">Album</a></li>
+          <li><a href="wall.html" onclick="closeMenu()">Wall</a></li>
+          <li><a href="contact.html" class="active-page" onclick="closeMenu()">Contact</a></li>
+          <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact">
+    <div class="container">
+      <h1 class="sub-title">Get In <span>Touch</span></h1>
+      
+      <div class="contact-row">
+        <div class="contact-left">
+          <div class="contact-info-card">
+            <i class="fa-solid fa-paper-plane"></i>
+            <div>
+              <h3>Email</h3>
+              <p><a href="/cdn-cgi/l/email-protection#79181d131c0d1c001710104e4d391e14181015571a1614"><span class="__cf_email__" data-cfemail="c1a0a5aba4b5a4b8afa8a8f6f581a6aca0a8adefa2aeac">[email&#160;protected]</span></a></p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p><a href="tel:+233533827884">+233533827884</a></p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <h3>Location</h3>
+              <p>Accra, Ghana</p>
+            </div>
+          </div>
+
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/niiadjetey" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/adjetey0" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://x.com/mradjeteynii" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/west.xds" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <form id="contact-form">
+            <input type="text" name="from_name" placeholder="Your Name" required>
+            <input type="email" name="from_email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Adjei Bismarck. All Rights Reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/niiadjetey" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/adjetey0" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://x.com/mradjeteynii" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/west.xds" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Initialize EmailJS
+    (function(){
+      emailjs.init("CnoluSj2PG3HRuNAf");
+    })();
+
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (menuIcon && navMenu) {
+      menuIcon.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (menuIcon.classList.contains('fa-bars')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times');
+        } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    function closeMenu() {
+      if (navMenu) {
+        navMenu.classList.remove('active');
+      }
+      if (menuIcon) {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Show toast function
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, duration);
+    }
+
+    // Contact Form Submission
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const submitBtn = event.target.querySelector('.btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      emailjs.sendForm('service_jxgh7db', 'template_mf670f5', this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          showToast('✓ Message sent successfully!');
+          document.getElementById('contact-form').reset();
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }, function(error) {
+          console.log('FAILED...', error);
+          showToast('✗ Failed to send message.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        });
+    });
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

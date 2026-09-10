@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nii adjetey — About</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
+</head>
+<body>
+  <!-- ===== TOP NAV BAR ===== -->
+  <header class="page-topbar">
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
+        </div>
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <ul id="nav-menu">
+          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+          <li><a href="about.html" class="active-page" onclick="closeMenu()">About</a></li>
+          <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+          <li><a href="portfolio.html" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="album.html" onclick="closeMenu()">Album</a></li>
+          <li><a href="wall.html" onclick="closeMenu()">Wall</a></li>
+          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+          <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <div id="about">
+    <div class="container">
+      <div class="row">
+        <div class="about-col-1">
+          <img src="images/user.webp" />
+        </div>
+        <div class="about-col-2">
+          <h1 class="sub-title">About Me</h1>
+          <p>
+            I'm an Embedded Systems Engineer with a strong command of the full technology stack. While my foundation lies in designing and programming hardware systems, I've expanded my expertise across backend development, web engineering, data analytics, and graphic design — giving me the ability to build complete, end-to-end solutions from the hardware level all the way up to the user interface. I don't just write firmware; I architect the systems, analyse the data they generate, and design the platforms that bring them to life. My goal is to bridge the physical and digital worlds through technology that is efficient, scalable, and purposeful.
+          </p>
+
+          <div class="tab-titles">
+            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+            <p class="tab-links" onclick="opentab('experience')">Experience</p>
+            <p class="tab-links" onclick="opentab('education')">Education</p>
+          </div>
+
+          <div class="tab-contents active-tab" id="skills">
+            <ul>
+              <li><span>Embedded Systems</span><br />Designs and programs hardware systems, microcontrollers, and IoT devices.</li>
+              <li><span>Backend Development</span><br />Handles system integration and server-side logic.</li>
+              <li><span>Web Development</span><br />Designs and develops responsive web interfaces.</li>
+              <li><span>Data Analytics</span><br />Interprets data to help organizations make informed decisions.</li>
+              <li><span>Graphic Design</span><br />Creates visual concepts that inspire, inform or captivate consumers.</li>
+            </ul>
+          </div>
+
+          <div class="tab-contents" id="experience">
+            <ul>
+              <li><span>2024 - 2024</span><br />Data Analyst at CognoRise InfoTech</li>
+              <li><span>2024 - 2024</span><br />Intern at Electricity Company of Ghana</li>
+              <li><span>2024 - 2024</span><br />Junior Backend Developer at Smart Hives Lab</li>
+              <li><span>2025 - 2025</span><br />Editor-In-Chief, Computer Science</li>
+              <li><span>2026</span><br />Claude Hackathon Winner, KNUST EDITIONS</li>
+            </ul>
+          </div>
+
+          <div class="tab-contents" id="education">
+            <ul>
+              <li><span>2024 - Present</span><br />Student at KNUST</li>
+              <li><span>2027</span><br />Bachelor's Degree in Computer Science</li>
+              <li><span>2024</span><br />Data Analytics Certification</li>
+              <li><span>2025</span><br />Backend Development Bootcamp</li>
+            </ul>
+          </div>
+
+          <div class="cv-button-wrapper">
+            <a href="documents/cv.pdf" download class="btn cv-btn">
+              <i class="fa-solid fa-download"></i> Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Adjei Bismarck. All Rights Reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/niiadjetey" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/adjetey0" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://x.com/mradjeteynii" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/west.xds" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Tab switching functionality
+    function opentab(tabname) {
+      var tablinks = document.getElementsByClassName("tab-links");
+      var tabcontents = document.getElementsByClassName("tab-contents");
+      for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active-link");
+      }
+      for (var i = 0; i < tabcontents.length; i++) {
+        tabcontents[i].classList.remove("active-tab");
+      }
+      event.target.classList.add("active-link");
+      document.getElementById(tabname).classList.add("active-tab");
+    }
+
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (menuIcon && navMenu) {
+      menuIcon.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (menuIcon.classList.contains('fa-bars')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times');
+        } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    function closeMenu() {
+      if (navMenu) {
+        navMenu.classList.remove('active');
+      }
+      if (menuIcon) {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

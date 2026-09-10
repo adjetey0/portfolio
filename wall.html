@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nii adjetey — Wall</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <!-- ===== TOP NAV BAR ===== -->
+  <header class="page-topbar">
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
+        </div>
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <ul id="nav-menu">
+          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+          <li><a href="about.html" onclick="closeMenu()">About</a></li>
+          <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+          <li><a href="portfolio.html" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="album.html" onclick="closeMenu()">Album</a></li>
+          <li><a href="wall.html" class="active-page" onclick="closeMenu()">Wall</a></li>
+          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+          <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== WALL SECTION ===== -->
+  <section id="wall">
+    <div class="container">
+      <h1 class="sub-title">Sign My <span>Wall</span></h1>
+
+      <div class="wall-toolbar-wrap">
+        <div class="wall-toolbar">
+          <button id="wall-sign-btn" class="wall-pill-btn wall-sign-pill">
+            <i class="fa-solid fa-signature"></i> Sign
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <button id="wall-snapshot-btn" class="wall-pill-btn">
+            <i class="fa-solid fa-camera"></i> Snapshot
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <button id="wall-shuffle-btn" class="wall-pill-btn wall-pill-icon" title="Shuffle layout">
+            <i class="fa-solid fa-shuffle"></i>
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <button id="wall-refresh-btn" class="wall-pill-btn wall-pill-icon" title="Refresh">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <span class="wall-toolbar-divider"></span>
+          <span class="wall-count" id="wall-count">0 notes</span>
+        </div>
+        <p class="wall-subtext">Tap the share icon on any card, or hit Snapshot, to export a branded image.</p>
+      </div>
+
+      <div id="wall-posts" class="wall-grid">
+        <p class="wall-loading" id="wall-loading">Loading wall…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WALL: SIGN MODAL ===== -->
+  <div id="wall-sign-modal" class="nd-modal-backdrop" onclick="closeWallModal(event)">
+    <div class="nd-modal wall-sign-modal">
+      <div class="wall-sign-header">
+        <div>
+          <h3>Sign on the Wall</h3>
+          <p class="wall-sign-subtitle">Leave your signature and note on the permanent canvas.</p>
+        </div>
+        <button type="button" class="wall-sign-close" onclick="closeWallModal()" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="wall-form" class="wall-form">
+        <div class="wall-form-row">
+          <div class="wall-input-icon">
+            <i class="fa-solid fa-tag"></i>
+            <input type="text" id="wall-name" placeholder="Your Name / Alias" maxlength="40" required>
+          </div>
+          <div class="wall-input-icon">
+            <i class="fa-solid fa-link"></i>
+            <input type="text" id="wall-handle" placeholder="@handle or website" maxlength="40">
+          </div>
+        </div>
+
+        <textarea id="wall-message" rows="3" placeholder="Write your note, greeting, or advice here..." maxlength="250" required></textarea>
+
+        <div class="wall-sig-preview">
+          <span class="wall-sig-label">Signature Preview</span>
+          <p class="wall-sig-text" id="wall-sig-text">Your Signature</p>
+        </div>
+
+        <div class="wall-sign-footer">
+          <span class="wall-char-count" id="wall-char-count">0/250</span>
+          <button type="submit" class="btn" id="wall-submit-btn">Place on Wall</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Adjei Bismarck. All Rights Reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/niiadjetey" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/adjetey0" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://x.com/mradjeteynii" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/west.xds" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (menuIcon && navMenu) {
+      menuIcon.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (menuIcon.classList.contains('fa-bars')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times');
+        } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    function closeMenu() {
+      if (navMenu) {
+        navMenu.classList.remove('active');
+      }
+      if (menuIcon) {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Show toast function
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, duration);
+    }
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import {
+      getFirestore, collection, addDoc, query, orderBy,
+      limit, onSnapshot, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGDJeB7hb3pwS1Y2dVswHG4htoDf9HFO8",
+      authDomain: "myportfolio-940e2.firebaseapp.com",
+      projectId: "myportfolio-940e2",
+      storageBucket: "myportfolio-940e2.firebasestorage.app",
+      messagingSenderId: "718368808589",
+      appId: "1:718368808589:web:5579f0f59402bc036a8cc4",
+      measurementId: "G-2QT2G8SWZW"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const wallRef = collection(db, "wallPosts");
+
+    const wallForm = document.getElementById('wall-form');
+    const wallPostsEl = document.getElementById('wall-posts');
+    const wallLoading = document.getElementById('wall-loading');
+    const submitBtn = document.getElementById('wall-submit-btn');
+    const wallCountEl = document.getElementById('wall-count');
+    const wallSignBtn = document.getElementById('wall-sign-btn');
+    const wallSignModal = document.getElementById('wall-sign-modal');
+    const wallShuffleBtn = document.getElementById('wall-shuffle-btn');
+    const wallRefreshBtn = document.getElementById('wall-refresh-btn');
+    const wallSnapshotBtn = document.getElementById('wall-snapshot-btn');
+    const wallNameInput = document.getElementById('wall-name');
+    const wallHandleInput = document.getElementById('wall-handle');
+    const wallMessageInput = document.getElementById('wall-message');
+    const wallSigText = document.getElementById('wall-sig-text');
+    const wallCharCount = document.getElementById('wall-char-count');
+    const MESSAGE_MAX = 250;
+
+    // Basic client-side rate limit: 1 post per 30 seconds per browser
+    const WALL_COOLDOWN_MS = 30000;
+    let latestSnapshot = null;
+
+    function escapeHTML(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function toHandle(name) {
+      return '@' + name.toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 20);
+    }
+
+    function cleanHandle(raw) {
+      if (!raw) return '';
+      raw = raw.trim();
+      if (/^https?:\/\//i.test(raw) || raw.includes('.')) return raw; // looks like a website, leave as-is
+      return raw.startsWith('@') ? raw : '@' + raw.replace(/^@+/, '');
+    }
+
+    function formatDate(date) {
+      if (!date) return 'just now';
+      return date.toLocaleDateString(undefined, { month: 'short', day: '2-digit', year: 'numeric' });
+    }
+
+    function randomTilt() {
+      return (Math.random() * 4 - 2).toFixed(2); // -2deg to 2deg
+    }
+
+    function renderPosts(snapshot) {
+      latestSnapshot = snapshot;
+      wallLoading.remove();
+      wallPostsEl.innerHTML = '';
+
+      wallCountEl.textContent = snapshot.size + (snapshot.size === 1 ? ' note' : ' notes');
+
+      if (snapshot.empty) {
+        wallPostsEl.innerHTML = '<p class="wall-empty">No notes yet — be the first to sign the wall!</p>';
+        return;
+      }
+
+      snapshot.forEach(function (docSnap) {
+        const data = docSnap.data();
+        const card = document.createElement('div');
+        card.className = 'wall-card';
+        card.style.transform = 'rotate(' + randomTilt() + 'deg)';
+        const ts = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate() : null;
+        card.innerHTML =
+          '<p class="wall-card-name">' + escapeHTML(data.name) + '</p>' +
+          '<p class="wall-card-message">' + escapeHTML(data.message) + '</p>' +
+          '<div class="wall-card-footer">' +
+            '<span class="wall-card-handle">' + escapeHTML(data.handle || toHandle(data.name)) + '</span>' +
+            '<span class="wall-card-time">' + formatDate(ts) + '</span>' +
+          '</div>';
+        wallPostsEl.appendChild(card);
+      });
+    }
+
+    const wallQuery = query(wallRef, orderBy('createdAt', 'desc'), limit(100));
+    onSnapshot(wallQuery, renderPosts, function (err) {
+      console.error('Wall load error:', err);
+      wallLoading.textContent = 'Could not load the wall right now.';
+    });
+
+    // ===== Toolbar: Sign modal =====
+    wallSignBtn.addEventListener('click', function () {
+      wallSignModal.classList.add('active');
+    });
+
+    function closeWallModal(e) {
+      if (e && e.target !== wallSignModal) return;
+      wallSignModal.classList.remove('active');
+    }
+    window.closeWallModal = closeWallModal;
+
+    // ===== Live signature preview =====
+    wallNameInput.addEventListener('input', function () {
+      const val = wallNameInput.value.trim();
+      wallSigText.textContent = val || 'Your Signature';
+    });
+
+    // ===== Character counter =====
+    wallMessageInput.addEventListener('input', function () {
+      const len = wallMessageInput.value.length;
+      wallCharCount.textContent = len + '/' + MESSAGE_MAX;
+    });
+
+    // ===== Toolbar: Shuffle (re-randomize card tilt) =====
+    wallShuffleBtn.addEventListener('click', function () {
+      document.querySelectorAll('.wall-card').forEach(function (card) {
+        card.style.transform = 'rotate(' + randomTilt() + 'deg)';
+      });
+    });
+
+    // ===== Toolbar: Refresh =====
+    wallRefreshBtn.addEventListener('click', function () {
+      wallRefreshBtn.classList.add('spinning');
+      if (latestSnapshot) renderPosts(latestSnapshot);
+      setTimeout(function () { wallRefreshBtn.classList.remove('spinning'); }, 500);
+    });
+
+    // ===== Toolbar: Snapshot (download all current notes as one image) =====
+    wallSnapshotBtn.addEventListener('click', function () {
+      const cardCount = wallPostsEl.querySelectorAll('.wall-card').length;
+      if (!cardCount) {
+        showToast('✋ No notes to snapshot yet.');
+        return;
+      }
+
+      wallSnapshotBtn.disabled = true;
+      const originalHTML = wallSnapshotBtn.innerHTML;
+      wallSnapshotBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Capturing...';
+
+      // Build an off-screen wrapper: cloned grid (flattened, no tilt) + branded footer
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.left = '-9999px';
+      wrapper.style.top = '0';
+      wrapper.style.width = wallPostsEl.offsetWidth + 'px';
+      wrapper.style.background = '#000';
+      wrapper.style.padding = '32px';
+      wrapper.style.fontFamily = "'Poppins', sans-serif";
+
+      const gridClone = wallPostsEl.cloneNode(true);
+      gridClone.querySelectorAll('.wall-card').forEach(function (card) {
+        card.style.transform = 'none'; // flatten tilt for a clean grid snapshot
+      });
+      wrapper.appendChild(gridClone);
+
+      const footer = document.createElement('div');
+      footer.style.display = 'flex';
+      footer.style.justifyContent = 'space-between';
+      footer.style.alignItems = 'center';
+      footer.style.marginTop = '24px';
+      footer.style.paddingTop = '20px';
+      footer.style.borderTop = '2px solid #222';
+      footer.innerHTML =
+        '<span style="color:#ff004f;font-weight:700;font-size:20px;">BISMARCK</span>' +
+        '<span style="color:#888;font-size:13px;">' + cardCount + ' notes &middot; adjetey.vercel.app/#wall</span>';
+      wrapper.appendChild(footer);
+
+      document.body.appendChild(wrapper);
+
+      html2canvas(wrapper, { backgroundColor: '#000000', scale: 2, useCORS: true })
+        .then(function (canvas) {
+          const link = document.createElement('a');
+          link.download = 'my-wall-snapshot-' + Date.now() + '.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          showToast('✓ Snapshot downloaded!');
+        })
+        .catch(function (err) {
+          console.error('Snapshot error:', err);
+          showToast('✗ Could not create snapshot.');
+        })
+        .finally(function () {
+          document.body.removeChild(wrapper);
+          wallSnapshotBtn.disabled = false;
+          wallSnapshotBtn.innerHTML = originalHTML;
+        });
+    });
+
+    wallForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const lastPost = Number(localStorage.getItem('wallLastPostAt') || 0);
+      if (Date.now() - lastPost < WALL_COOLDOWN_MS) {
+        showToast('✋ Please wait a moment before posting again.');
+        return;
+      }
+
+      const name = wallNameInput.value.trim();
+      const handleRaw = wallHandleInput.value.trim();
+      const message = wallMessageInput.value.trim();
+      if (!name || !message) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Posting...';
+
+      try {
+        await addDoc(wallRef, {
+          name: name.slice(0, 40),
+          handle: cleanHandle(handleRaw).slice(0, 40),
+          message: message.slice(0, MESSAGE_MAX),
+          createdAt: serverTimestamp()
+        });
+        localStorage.setItem('wallLastPostAt', String(Date.now()));
+        wallForm.reset();
+        wallSigText.textContent = 'Your Signature';
+        wallCharCount.textContent = '0/' + MESSAGE_MAX;
+        closeWallModal();
+        showToast('✓ Posted to the wall!');
+      } catch (err) {
+        console.error('Wall post error:', err);
+        showToast('✗ Could not post. Try again.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Post to Wall';
+      }
+    });
+    </script>
+</body>
+</html>
