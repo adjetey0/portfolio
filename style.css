@@ -654,15 +654,15 @@ nav ul li a.active-page {
   z-index: 10 !important;
 }
 
-.deck-card-0 { transform: translateX(-180px) rotate(-12deg); z-index: 1; }
-.deck-card-1 { transform: translateX(-70px) rotate(-4deg); z-index: 2; }
-.deck-card-2 { transform: translateX(40px) rotate(4deg); z-index: 3; }
-.deck-card-3 { transform: translateX(150px) rotate(12deg); z-index: 4; }
+.deck-card-0 { transform: translateX(-50%) translateX(-180px) rotate(-12deg); z-index: 1; }
+.deck-card-1 { transform: translateX(-50%) translateX(-70px) rotate(-4deg); z-index: 2; }
+.deck-card-2 { transform: translateX(-50%) translateX(40px) rotate(4deg); z-index: 3; }
+.deck-card-3 { transform: translateX(-50%) translateX(150px) rotate(12deg); z-index: 4; }
 
-.deck-card-0:hover { transform: translateX(-180px) rotate(-12deg) translateY(-10px); }
-.deck-card-1:hover { transform: translateX(-70px) rotate(-4deg) translateY(-10px); }
-.deck-card-2:hover { transform: translateX(40px) rotate(4deg) translateY(-10px); }
-.deck-card-3:hover { transform: translateX(150px) rotate(12deg) translateY(-10px); }
+.deck-card-0:hover { transform: translateX(-50%) translateX(-180px) rotate(-12deg) translateY(-10px); }
+.deck-card-1:hover { transform: translateX(-50%) translateX(-70px) rotate(-4deg) translateY(-10px); }
+.deck-card-2:hover { transform: translateX(-50%) translateX(40px) rotate(4deg) translateY(-10px); }
+.deck-card-3:hover { transform: translateX(-50%) translateX(150px) rotate(12deg) translateY(-10px); }
 
 .deck-controls {
   display: flex;
@@ -1709,24 +1709,25 @@ footer p {
   }
 
   .deck-stage {
-    height: 240px;
+    height: 220px;
+    overflow: hidden;
   }
 
   .deck-card {
-    width: 150px;
-    height: 210px;
+    width: 130px;
+    height: 190px;
     border-width: 4px;
   }
 
-  .deck-card-0 { transform: translateX(-90px) rotate(-10deg); }
-  .deck-card-1 { transform: translateX(-32px) rotate(-3deg); }
-  .deck-card-2 { transform: translateX(26px) rotate(3deg); }
-  .deck-card-3 { transform: translateX(84px) rotate(10deg); }
+  .deck-card-0 { transform: translateX(-50%) translateX(-64px) rotate(-10deg); }
+  .deck-card-1 { transform: translateX(-50%) translateX(-22px) rotate(-3deg); }
+  .deck-card-2 { transform: translateX(-50%) translateX(18px) rotate(3deg); }
+  .deck-card-3 { transform: translateX(-50%) translateX(60px) rotate(10deg); }
 
-  .deck-card-0:hover { transform: translateX(-90px) rotate(-10deg) translateY(-8px); }
-  .deck-card-1:hover { transform: translateX(-32px) rotate(-3deg) translateY(-8px); }
-  .deck-card-2:hover { transform: translateX(26px) rotate(3deg) translateY(-8px); }
-  .deck-card-3:hover { transform: translateX(84px) rotate(10deg) translateY(-8px); }
+  .deck-card-0:hover { transform: translateX(-50%) translateX(-64px) rotate(-10deg) translateY(-8px); }
+  .deck-card-1:hover { transform: translateX(-50%) translateX(-22px) rotate(-3deg) translateY(-8px); }
+  .deck-card-2:hover { transform: translateX(-50%) translateX(18px) rotate(3deg) translateY(-8px); }
+  .deck-card-3:hover { transform: translateX(-50%) translateX(60px) rotate(10deg) translateY(-8px); }
 
   .album-grid {
     grid-auto-rows: 160px;
