@@ -170,6 +170,44 @@ body {
   width: 100%;
 }
 
+/* ===== SKILLS & SYSTEMS ===== */
+#skills-systems {
+  padding: 40px 0 80px;
+}
+
+.section-label {
+  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.skills-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid #1a1a1a;
+}
+
+.skills-row:last-child {
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.skills-label {
+  color: #ff004f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.skills-value {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 .container {
   padding: 10px 10%;
 }
@@ -1451,46 +1489,62 @@ nav ul li a.active-page {
 }
 
 /* ===== FOOTER ===== */
-footer {
+.site-footer {
   background: #0a0a0a;
-  padding: 30px 0;
-  text-align: center;
-  border-top: 1px solid #222;
+  padding: 40px 0 25px;
+  border-top: 1px solid #1a1a1a;
 }
 
-footer p {
-  color: #888;
+.footer-links-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.footer-nav {
+  color: #555;
   font-size: 14px;
-  margin-bottom: 15px;
+  line-height: 2;
+  max-width: 640px;
 }
 
-.footer-social {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
+.footer-nav a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.footer-social a {
-  width: 40px;
-  height: 40px;
-  background: #111;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer-nav a:hover {
   color: #ff004f;
-  font-size: 18px;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
 }
 
-.footer-social a:hover {
-  background: #ff004f;
-  color: white;
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(255, 0, 79, 0.4);
-  border-color: #ff004f;
+.footer-tagline {
+  color: #ff004f;
+  font-style: italic;
+  font-size: 14px;
+  text-align: right;
+  max-width: 260px;
+}
+
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-bottom-row p {
+  color: #666;
+  font-size: 13px;
+}
+
+.footer-location {
+  color: #666;
 }
 
 /* Toast Notification */
@@ -2054,23 +2108,33 @@ footer p {
     bottom: 30px;
   }
 
-  footer {
-    padding: 25px 0;
+  .site-footer {
+    padding: 30px 0 20px;
   }
 
-  footer p {
-    font-size: 12px;
-    margin-bottom: 12px;
+  .footer-links-row {
+    flex-direction: column;
   }
 
-  .footer-social {
-    gap: 12px;
+  .footer-nav {
+    line-height: 1.9;
   }
 
-  .footer-social a {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
+  .footer-tagline {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* ── SKILLS & SYSTEMS MOBILE ── */
+  .skills-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 16px 0;
   }
 
   /* Modal on mobile */
