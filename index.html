@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
 </head>
 <body>
-  <!-- ===== HEADER / HOME HERO ===== -->
-  <div id="header">
+  <!-- ===== TOP NAV BAR ===== -->
+  <header class="page-topbar">
     <div class="container">
       <nav>
         <div class="logo">
@@ -29,12 +29,48 @@
           <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
         </ul>
       </nav>
-      <div class="header-text">
-        <p>Embedded Engineer/ Web Developer/ Data Analyst</p>
-        <h1>Hi, I'm <span>Adjei</span><br />Bismarck from Ghana</h1>
+    </div>
+  </header>
+
+  <!-- ===== HOME HERO (text-only, no photo) ===== -->
+  <section id="home-hero">
+    <div class="container">
+      <h1 class="hero-wordmark">Bismarck<span class="hero-dot">.</span></h1>
+
+      <p class="hero-lead">
+        <strong>Adjei Bismarck</strong> — Embedded Systems Engineer building efficient hardware-to-software
+        solutions, scalable web platforms, and data-driven tools.
+      </p>
+
+      <p class="hero-sub">
+        Specializing in embedded systems, backend development, web engineering, and data analytics —
+        bridging firmware, APIs, and interfaces into complete, end-to-end products.
+      </p>
+
+      <div class="hero-meta">
+        <span class="hero-meta-item">
+          <span class="hero-dot-status"></span>
+          Accra, Ghana — <span id="hero-clock">--:-- --</span>
+        </span>
+        <span class="hero-meta-divider">&middot;</span>
+        <span class="hero-meta-item">
+          <i class="fa-solid fa-graduation-cap"></i>
+          BSc Computer Science &middot; KNUST
+        </span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="contact.html" class="hero-pill">
+          <i class="fa-solid fa-envelope"></i> Get in Touch
+        </a>
+        <a href="documents/cv.pdf" download class="hero-pill hero-pill-accent">Download CV</a>
+        <a href="https://github.com/adjetey0" target="_blank" class="hero-link">GitHub</a>
+        <a href="https://x.com/mradjeteynii" target="_blank" class="hero-link">X</a>
+        <a href="https://www.linkedin.com/in/niiadjetey" target="_blank" class="hero-link">LinkedIn</a>
+        <a href="https://www.instagram.com/west.xds" target="_blank" class="hero-link">Instagram</a>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Toast Notification -->
   <div id="toast" class="toast"></div>
@@ -100,6 +136,22 @@
         behavior: 'smooth'
       });
     });
+
+    // Live Accra clock in hero
+    const heroClock = document.getElementById('hero-clock');
+    function updateHeroClock() {
+      if (!heroClock) return;
+      const now = new Date();
+      const formatted = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Africa/Accra'
+      }).format(now);
+      heroClock.textContent = formatted + ' GMT';
+    }
+    updateHeroClock();
+    setInterval(updateHeroClock, 30000);
   </script>
 </body>
 </html>
