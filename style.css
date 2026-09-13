@@ -325,6 +325,15 @@ nav ul li a.active-page {
   color: whitesmoke;
 }
 
+#about .sub-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+#about .sub-title span {
+  color: #ff004f;
+}
+
 .row {
   display: flex;
   justify-content: space-between;
