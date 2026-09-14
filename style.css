@@ -1285,15 +1285,14 @@ nav ul li a.active-page {
 
 /* ===== NOTE WALL (sticky-note cards) ===== */
 .wall-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 18px;
+  column-width: 220px;
+  column-gap: 18px;
   padding: 10px;
 }
 
 .wall-loading,
 .wall-empty {
-  grid-column: 1 / -1;
+  column-span: all;
   text-align: center;
   color: #888;
   font-size: 15px;
@@ -1301,6 +1300,10 @@ nav ul li a.active-page {
 }
 
 .wall-card {
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 18px;
   background: #0d0d0d;
   border: 1px solid #1e1e1e;
   border-radius: 10px;
@@ -2064,12 +2067,24 @@ nav ul li a.active-page {
   }
 
   .wall-grid {
+    display: grid;
+    column-width: auto;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     padding: 0;
   }
 
+  .wall-loading,
+  .wall-empty {
+    column-span: none;
+    grid-column: 1 / -1;
+  }
+
   .wall-card {
+    display: block;
+    width: auto;
+    break-inside: auto;
+    margin-bottom: 0;
     padding: 10px 12px;
   }
 
