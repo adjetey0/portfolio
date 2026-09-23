@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nii adjetey — Coffee</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <!-- Page-specific styles for the Coffee page only -->
+  <style>
+    #coffee-hero {
+      padding: 70px 0 100px;
+    }
+
+    .coffee-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 0, 79, 0.1);
+      border: 1px solid rgba(255, 0, 79, 0.3);
+      color: #ff6f3d;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .coffee-title {
+      font-size: 52px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .coffee-subtitle {
+      color: #999;
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-bottom: 45px;
+    }
+
+    .coffee-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 18px;
+      padding: 35px;
+      max-width: 640px;
+    }
+
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .amount-btn {
+      position: relative;
+      background: #151515;
+      border: 2px solid #222;
+      color: #ccc;
+      padding: 14px 8px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .amount-btn:hover {
+      border-color: #ff004f;
+      color: #fff;
+    }
+
+    .amount-btn.active {
+      background: linear-gradient(90deg, #ff004f, #ff6f3d);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .amount-btn .amount-star {
+      position: absolute;
+      top: -10px;
+      right: -6px;
+      font-size: 16px;
+    }
+
+    .amount-display {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #151515;
+      border: 2px solid #222;
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 12px;
+    }
+
+    .amount-display-currency {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .amount-display-currency span:first-child {
+      font-size: 26px;
+      color: #666;
+      font-weight: 700;
+    }
+
+    .amount-display-currency span:last-child {
+      font-size: 10px;
+      color: #555;
+      letter-spacing: 1px;
+    }
+
+    #custom-amount-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 42px;
+      font-weight: 700;
+      text-align: right;
+      width: 60%;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .coffee-helper {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
+
+    .coffee-helper strong {
+      color: #ff004f;
+    }
+
+    .coffee-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .coffee-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .coffee-form input,
+    .coffee-form textarea {
+      width: 100%;
+      padding: 15px 16px;
+      background: #151515;
+      border: 2px solid #222;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      resize: vertical;
+    }
+
+    .coffee-form input::placeholder,
+    .coffee-form textarea::placeholder {
+      color: #666;
+    }
+
+    .coffee-form input:focus,
+    .coffee-form textarea:focus {
+      border-color: #ff004f;
+      box-shadow: 0 0 15px rgba(255, 0, 79, 0.15);
+    }
+
+    .coffee-submit-btn {
+      background: linear-gradient(90deg, #ff004f, #ff6f3d);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 6px;
+    }
+
+    .coffee-submit-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .coffee-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: default;
+      transform: none;
+    }
+
+    .coffee-note {
+      color: #555;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .coffee-title {
+        font-size: 34px;
+      }
+
+      .coffee-card {
+        padding: 22px;
+      }
+
+      .amount-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .coffee-form-row {
+        grid-template-columns: 1fr;
+      }
+
+      #custom-amount-input {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== TOP NAV BAR ===== -->
+  <header class="page-topbar">
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
+        </div>
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <ul id="nav-menu">
+          <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+          <li><a href="about.html" onclick="closeMenu()">About</a></li>
+          <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+          <li><a href="portfolio.html" onclick="closeMenu()">Portfolio</a></li>
+          <li><a href="album.html" onclick="closeMenu()">Album</a></li>
+          <li><a href="wall.html" onclick="closeMenu()">Wall</a></li>
+          <li><a href="coffee.html" class="active-page" onclick="closeMenu()">Coffee</a></li>
+          <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+          <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== COFFEE / SUPPORT SECTION ===== -->
+  <section id="coffee-hero">
+    <div class="container">
+      <span class="coffee-badge"><i class="fa-solid fa-mug-hot"></i> Buy Me a Coffee</span>
+      <h1 class="coffee-title">Support the Craft</h1>
+      <p class="coffee-subtitle">
+        Fueling late-night debugging, side projects, and the tools I build and share — every bit helps.
+      </p>
+
+      <div class="coffee-card">
+        <div class="amount-grid" id="amount-grid">
+          <button class="amount-btn" data-amount="25">₵25</button>
+          <button class="amount-btn active" data-amount="50">
+            <span class="amount-star">⭐</span>₵50
+          </button>
+          <button class="amount-btn" data-amount="100">₵100</button>
+          <button class="amount-btn" data-amount="250">₵250</button>
+          <button class="amount-btn" data-amount="500">₵500</button>
+        </div>
+
+        <div class="amount-display">
+          <div class="amount-display-currency">
+            <span>₵</span>
+            <span>GHS</span>
+          </div>
+          <input type="number" id="custom-amount-input" value="50" min="5" step="1">
+        </div>
+
+        <p class="coffee-helper" id="coffee-helper">
+          <strong>2 Coffees</strong> &middot; Fuel for building features and shipping polish
+        </p>
+
+        <form class="coffee-form" id="coffee-form">
+          <div class="coffee-form-row">
+            <input type="text" id="donor-name" placeholder="Name / Alias (Optional)" maxlength="40">
+            <input type="email" id="donor-email" placeholder="Email for receipt *" required>
+          </div>
+          <input type="tel" id="donor-phone" placeholder="Phone (Optional for instant SMS receipt)">
+          <textarea id="donor-message" rows="3" placeholder="Say something nice or leave a cheer note (Optional)..." maxlength="300"></textarea>
+
+          <button type="submit" class="coffee-submit-btn" id="coffee-submit-btn">
+            Buy Me a Coffee &middot; ₵50
+          </button>
+          <p class="coffee-note">Secured by Paystack. Supports card and Mobile Money.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links-row">
+        <nav class="footer-nav">
+          <a href="index.html">Home</a> /
+          <a href="about.html">About</a> /
+          <a href="services.html">Services</a> /
+          <a href="portfolio.html">Portfolio</a> /
+          <a href="album.html">Album</a> /
+          <a href="wall.html">Wall</a> /
+          <a href="coffee.html">Coffee</a> /
+          <a href="contact.html">Contact</a> /
+          <a href="dashboard.html">Dashboard</a> /
+          <a href="https://github.com/adjetey0" target="_blank">GitHub</a> /
+          <a href="https://x.com/mradjeteynii" target="_blank">X</a> /
+          <a href="https://www.linkedin.com/in/niiadjetey" target="_blank">LinkedIn</a> /
+          <a href="https://www.instagram.com/west.xds" target="_blank">Instagram</a>
+        </nav>
+        <p class="footer-tagline">Build with purpose &middot; design with intention</p>
+      </div>
+      <div class="footer-bottom-row">
+        <p>&copy; 2025 Adjei Bismarck. All Rights Reserved.</p>
+        <p class="footer-location">Accra, Ghana</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (menuIcon && navMenu) {
+      menuIcon.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (menuIcon.classList.contains('fa-bars')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times');
+        } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    function closeMenu() {
+      if (navMenu) {
+        navMenu.classList.remove('active');
+      }
+      if (menuIcon) {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Show toast function
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, duration);
+    }
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // ===== COFFEE / PAYSTACK LOGIC =====
+    const COFFEE_PRICE = 25; // ₵25 = 1 coffee, matches preset buttons
+
+    // ⚠️ Replace with your own Paystack public key (Paystack Dashboard → Settings → API Keys & Webhooks)
+    const PAYSTACK_PUBLIC_KEY = 'pk_test_YOUR_PUBLIC_KEY_HERE';
+
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const customAmountInput = document.getElementById('custom-amount-input');
+    const coffeeHelper = document.getElementById('coffee-helper');
+    const coffeeSubmitBtn = document.getElementById('coffee-submit-btn');
+    const coffeeForm = document.getElementById('coffee-form');
+
+    function setActiveAmount(amount, clickedBtn) {
+      amountBtns.forEach(function (btn) { btn.classList.remove('active'); });
+      if (clickedBtn) clickedBtn.classList.add('active');
+      customAmountInput.value = amount;
+      updateHelperAndButton();
+    }
+
+    function updateHelperAndButton() {
+      const amount = Math.max(0, Number(customAmountInput.value) || 0);
+      const coffees = Math.max(1, Math.round(amount / COFFEE_PRICE));
+      coffeeHelper.innerHTML =
+        '<strong>' + coffees + (coffees === 1 ? ' Coffee' : ' Coffees') + '</strong> &middot; Fuel for building features and shipping polish';
+      coffeeSubmitBtn.textContent = 'Buy Me a Coffee · ₵' + amount;
+    }
+
+    amountBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setActiveAmount(btn.dataset.amount, btn);
+      });
+    });
+
+    customAmountInput.addEventListener('input', function () {
+      amountBtns.forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.amount === customAmountInput.value);
+      });
+      updateHelperAndButton();
+    });
+
+    updateHelperAndButton();
+
+    coffeeForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const amount = Number(customAmountInput.value);
+      const email = document.getElementById('donor-email').value.trim();
+      const name = document.getElementById('donor-name').value.trim();
+      const phone = document.getElementById('donor-phone').value.trim();
+      const message = document.getElementById('donor-message').value.trim();
+
+      if (!email) {
+        showToast('✋ Please enter your email for the receipt.');
+        return;
+      }
+      if (!amount || amount < 5) {
+        showToast('✋ Minimum amount is ₵5.');
+        return;
+      }
+
+      if (PAYSTACK_PUBLIC_KEY.includes('YOUR_PUBLIC_KEY_HERE')) {
+        showToast('⚠️ Paystack key not set up yet — see setup instructions.');
+        return;
+      }
+
+      coffeeSubmitBtn.disabled = true;
+      coffeeSubmitBtn.textContent = 'Opening checkout...';
+
+      const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: email,
+        amount: amount * 100, // Paystack expects the amount in pesewas (kobo equivalent)
+        currency: 'GHS',
+        metadata: {
+          custom_fields: [
+            { display_name: 'Name', variable_name: 'name', value: name || 'Anonymous' },
+            { display_name: 'Phone', variable_name: 'phone', value: phone || 'N/A' },
+            { display_name: 'Message', variable_name: 'message', value: message || 'N/A' }
+          ]
+        },
+        callback: function (response) {
+          showToast('✓ Thank you! Payment reference: ' + response.reference);
+          coffeeForm.reset();
+          setActiveAmount(50, document.querySelector('.amount-btn[data-amount="50"]'));
+          coffeeSubmitBtn.disabled = false;
+        },
+        onClose: function () {
+          coffeeSubmitBtn.disabled = false;
+          updateHelperAndButton();
+        }
+      });
+
+      handler.openIframe();
+    });
+  </script>
+</body>
+</html>
