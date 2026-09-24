@@ -11,7 +11,6 @@ body {
   background-color: black;
   color: white;
   overflow-x: hidden;
-  text-align: center; /* ADDED FOR CENTERING */
 }
 
 /* ===== HEADER ===== */
@@ -43,7 +42,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  justify-content: center; /* ADDED FOR CENTERING */
   gap: 60px;
   width: 100%;
   flex-wrap: wrap;
@@ -89,8 +87,6 @@ body {
   line-height: 1.5;
   max-width: 780px;
   margin-bottom: 20px;
-  margin-left: auto; /* ADDED FOR CENTERING */
-  margin-right: auto; /* ADDED FOR CENTERING */
 }
 
 .hero-lead strong {
@@ -103,14 +99,11 @@ body {
   line-height: 1.7;
   max-width: 720px;
   margin-bottom: 35px;
-  margin-left: auto; /* ADDED FOR CENTERING */
-  margin-right: auto; /* ADDED FOR CENTERING */
 }
 
 .hero-meta {
   display: flex;
   align-items: center;
-  justify-content: center; /* ADDED FOR CENTERING */
   gap: 16px;
   flex-wrap: wrap;
   color: #999;
@@ -144,7 +137,6 @@ body {
 .hero-actions {
   display: flex;
   align-items: center;
-  justify-content: center; /* ADDED FOR CENTERING */
   gap: 22px;
   flex-wrap: wrap;
 }
@@ -379,8 +371,6 @@ nav ul li a.active-page {
 .row {
   display: flex;
   justify-content: space-between;
-  justify-content: center; /* ADDED FOR CENTERING */
-  text-align: center; /* ADDED FOR CENTERING */
   flex-wrap: wrap;
 }
 
@@ -405,7 +395,6 @@ nav ul li a.active-page {
 
 .tab-titles {
   display: flex;
-  justify-content: center; /* ADDED FOR CENTERING */
   margin: 20px 0 40px;
   gap: 40px;
 }
@@ -456,7 +445,6 @@ nav ul li a.active-page {
 .tab-contents ul {
   padding-left: 20px;
   line-height: 1.8;
-  list-style-position: inside; /* ADDED FOR CENTERING (keeps bullets aligned with centered text) */
 }
 
 .tab-contents ul li {
@@ -764,7 +752,6 @@ nav ul li a.active-page {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: center; /* ADDED FOR CENTERING */
 }
 
 .portfolio-tags span {
@@ -797,7 +784,6 @@ nav ul li a.active-page {
 .album-meta {
   display: flex;
   justify-content: space-between;
-  justify-content: center; /* ADDED FOR CENTERING */
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
@@ -1181,7 +1167,6 @@ nav ul li a.active-page {
 
 .wall-sign-header h3 {
   text-align: left;
-  text-align: center; /* ADDED FOR CENTERING */
   margin-bottom: 6px;
 }
 
@@ -1299,8 +1284,6 @@ nav ul li a.active-page {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  justify-content: center; /* ADDED FOR CENTERING */
-  flex-direction: column; /* ADDED FOR CENTERING */
   gap: 14px;
 }
 
@@ -1406,7 +1389,6 @@ nav ul li a.active-page {
 .contact-row {
   display: flex;
   justify-content: space-between;
-  justify-content: center; /* ADDED FOR CENTERING */
   gap: 50px;
   flex-wrap: wrap;
 }
@@ -1415,7 +1397,6 @@ nav ul li a.active-page {
   flex-basis: 35%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* ADDED FOR CENTERING */
   gap: 25px;
 }
 
@@ -1478,7 +1459,6 @@ nav ul li a.active-page {
 
 .social-icons {
   display: flex;
-  justify-content: center; /* ADDED FOR CENTERING */
   gap: 15px;
   margin-top: 10px;
 }
@@ -1554,7 +1534,6 @@ nav ul li a.active-page {
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: flex-start;
-  align-self: center; /* ADDED FOR CENTERING */
 }
 
 .btn:hover {
@@ -1573,10 +1552,7 @@ nav ul li a.active-page {
 .footer-links-row {
   display: flex;
   justify-content: space-between;
-  justify-content: center; /* ADDED FOR CENTERING */
   align-items: flex-start;
-  align-items: center; /* ADDED FOR CENTERING */
-  flex-direction: column; /* ADDED FOR CENTERING */
   flex-wrap: wrap;
   gap: 20px;
   padding-bottom: 25px;
@@ -1608,16 +1584,12 @@ nav ul li a.active-page {
   font-size: 13px;
   font-family: 'JetBrains Mono', monospace;
   text-align: right;
-  text-align: center; /* ADDED FOR CENTERING */
   max-width: 260px;
 }
 
 .footer-bottom-row {
   display: flex;
   justify-content: space-between;
-  justify-content: center; /* ADDED FOR CENTERING */
-  flex-direction: column; /* ADDED FOR CENTERING */
-  align-items: center; /* ADDED FOR CENTERING */
   flex-wrap: wrap;
   gap: 10px;
 }
