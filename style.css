@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -105,7 +107,8 @@ body {
   gap: 16px;
   flex-wrap: wrap;
   color: #999;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
   margin-bottom: 35px;
 }
 
@@ -205,6 +208,7 @@ body {
   color: #666;
   font-size: 13px;
   font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -226,11 +230,13 @@ body {
   color: #ff004f;
   font-size: 14px;
   font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .skills-value {
   color: #ccc;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
   line-height: 1.6;
 }
 
@@ -274,7 +280,9 @@ nav ul li {
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
   position: relative;
 }
 
@@ -751,8 +759,9 @@ nav ul li a.active-page {
   color: #ff004f;
   padding: 6px 15px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
   border: 1px solid rgba(255, 0, 79, 0.3);
 }
 
@@ -783,7 +792,8 @@ nav ul li a.active-page {
 
 .album-meta-left {
   color: #999;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -808,9 +818,9 @@ nav ul li a.active-page {
   border: none;
   padding: 8px 20px;
   border-radius: 24px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -893,9 +903,9 @@ nav ul li a.active-page {
   border: 2px solid #ff004f;
   padding: 10px 24px;
   border-radius: 30px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -911,7 +921,8 @@ nav ul li a.active-page {
 
 .deck-showing {
   color: #888;
-  font-size: 13px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* ===== GRID VIEW ===== */
@@ -1084,9 +1095,9 @@ nav ul li a.active-page {
   color: #ccc;
   padding: 10px 18px;
   border-radius: 30px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -1132,7 +1143,8 @@ nav ul li a.active-page {
 
 .wall-count {
   color: #888;
-  font-size: 13px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
   padding: 0 10px;
   white-space: nowrap;
 }
@@ -1161,6 +1173,7 @@ nav ul li a.active-page {
 .wall-sign-subtitle {
   color: #999;
   font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
   margin: 0;
 }
 
@@ -1253,6 +1266,7 @@ nav ul li a.active-page {
   color: #666;
   font-size: 11px;
   font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -1276,7 +1290,7 @@ nav ul li a.active-page {
 .wall-char-count {
   color: #666;
   font-size: 12px;
-  font-family: monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .wall-sign-footer .btn {
@@ -1347,11 +1361,13 @@ nav ul li a.active-page {
   color: #666;
   font-size: 10px;
   font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .wall-card-time {
   color: #666;
   font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -1546,7 +1562,8 @@ nav ul li a.active-page {
 
 .footer-nav {
   color: #555;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
   line-height: 2;
   max-width: 640px;
 }
@@ -1564,7 +1581,8 @@ nav ul li a.active-page {
 .footer-tagline {
   color: #ff004f;
   font-style: italic;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
   text-align: right;
   max-width: 260px;
 }
@@ -1578,7 +1596,8 @@ nav ul li a.active-page {
 
 .footer-bottom-row p {
   color: #666;
-  font-size: 13px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .footer-location {
