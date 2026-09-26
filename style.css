@@ -223,6 +223,11 @@ body {
   padding: 10px 10%;
 }
 
+.page-topbar .container {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -245,18 +250,19 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
 }
 
 nav ul li {
   display: inline-block;
   list-style: none;
-  margin: 10px 20px;
+  margin: 8px 12px;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
   position: relative;
@@ -1771,15 +1777,15 @@ nav ul li a.active-page {
 
   nav ul {
     justify-content: center;
-    gap: 4px;
+    gap: 2px;
   }
 
   nav ul li {
-    margin: 6px 10px;
+    margin: 5px 8px;
   }
 
   nav ul li a {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .logo h1 {
