@@ -32,36 +32,15 @@ body {
 
 /* ===== HOME HERO (text-only) ===== */
 #home-hero {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  padding: 60px 0;
+  padding: 110px 0 70px;
 }
 
 .hero-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
   width: 100%;
-  flex-wrap: wrap;
 }
 
 .hero-text {
-  flex: 1 1 520px;
-}
-
-.hero-photo {
-  flex: 0 0 320px;
-}
-
-.hero-photo img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: 20px;
-  border: 2px solid #1a1a1a;
-  box-shadow: 0 25px 60px rgba(255, 0, 79, 0.15);
+  max-width: 780px;
 }
 
 .hero-wordmark {
@@ -262,13 +241,10 @@ nav {
   font-weight: 700;
 }
 
-/* Mobile Menu Icon - Hidden by default */
-#menu-icon {
-  display: none;
-  font-size: 28px;
-  color: #fff;
-  cursor: pointer;
-  z-index: 1001;
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 nav ul li {
@@ -1754,20 +1730,7 @@ nav ul li a.active-page {
 
   /* ── HOME HERO MOBILE ── */
   #home-hero {
-    min-height: auto;
-    padding: 50px 0 60px;
-  }
-
-  .hero-row {
-    flex-direction: column-reverse;
-    gap: 30px;
-  }
-
-  .hero-photo {
-    flex: 0 0 auto;
-    width: 65%;
-    max-width: 280px;
-    margin: 0 auto;
+    padding: 45px 0 50px;
   }
 
   .hero-wordmark {
@@ -1806,44 +1769,21 @@ nav ul li a.active-page {
     padding: 10px 5%;
   }
 
-  #menu-icon {
-    display: block;
-  }
-
   nav ul {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.98);
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    transition: right 0.3s ease;
-    z-index: 1000;
-    padding: 0;
-  }
-
-  nav ul.active {
-    right: 0;
+    gap: 4px;
   }
 
   nav ul li {
-    margin: 25px 0;
-    width: 100%;
-    text-align: center;
-    display: block;
+    margin: 6px 10px;
   }
 
   nav ul li a {
-    font-size: 20px;
-    display: block;
-    padding: 10px;
+    font-size: 14px;
   }
 
   .logo h1 {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   /* Push text down so background subject shows above it */
@@ -2314,12 +2254,12 @@ nav ul li a.active-page {
     font-size: 13px;
   }
 
-  nav ul {
-    width: 80%;
+  nav ul li a {
+    font-size: 13px;
   }
 
-  nav ul li a {
-    font-size: 18px;
+  nav ul li {
+    margin: 5px 8px;
   }
 }
 
