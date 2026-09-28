@@ -321,7 +321,7 @@ body {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   position: relative;
 }
@@ -340,7 +340,7 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 nav ul li {
