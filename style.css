@@ -251,6 +251,23 @@ body {
   max-width: 780px;
 }
 
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.project-stack-tag {
+  background: #111;
+  border: 1px solid #222;
+  color: #ccc;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
 @media (max-width: 768px) {
   .project-row-top {
     flex-direction: column;
@@ -262,6 +279,69 @@ body {
   }
 
   .project-row-desc {
+    font-size: 14px;
+  }
+}
+
+/* ===== EXPERIENCE (home page) ===== */
+#experience {
+  padding: 20px 0 60px;
+}
+
+.experience-row {
+  padding: 26px 0;
+  border-top: 1px solid #1a1a1a;
+}
+
+.experience-row:last-child {
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.experience-row-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.experience-role {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.experience-company {
+  color: #ff004f;
+  font-weight: 600;
+}
+
+.experience-dates {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #888;
+  white-space: nowrap;
+}
+
+.experience-row-desc {
+  color: #999;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 780px;
+}
+
+@media (max-width: 768px) {
+  .experience-row-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-role {
+    font-size: 17px;
+  }
+
+  .experience-row-desc {
     font-size: 14px;
   }
 }
