@@ -393,15 +393,10 @@ body {
   padding: 10px 5%;
 }
 
-.page-topbar .container {
-  padding-left: 3%;
-  padding-right: 3%;
-}
-
 nav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   position: relative;
 }
@@ -428,13 +423,17 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 nav ul li {
   display: inline-block;
   list-style: none;
   margin: 8px 12px;
+}
+
+nav ul li:first-child {
+  margin-left: 0;
 }
 
 nav ul li a {
