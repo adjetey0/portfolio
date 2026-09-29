@@ -40,7 +40,7 @@ body {
 }
 
 .hero-text {
-  max-width: 780px;
+  width: 100%;
 }
 
 .hero-wordmark {
@@ -64,7 +64,6 @@ body {
   font-size: 26px;
   color: #f0f0f0;
   line-height: 1.5;
-  max-width: 780px;
   margin-bottom: 20px;
 }
 
@@ -76,7 +75,6 @@ body {
   font-size: 17px;
   color: #999;
   line-height: 1.7;
-  max-width: 720px;
   margin-bottom: 35px;
 }
 
@@ -423,7 +421,8 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  width: 100%;
 }
 
 nav ul li {
