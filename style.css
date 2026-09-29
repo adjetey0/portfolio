@@ -44,7 +44,7 @@ body {
 }
 
 .hero-wordmark {
-  font-size: 60px;
+  font-size: 88px;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 30px;
@@ -61,7 +61,7 @@ body {
 }
 
 .hero-lead {
-  font-size: 18px;
+  font-size: 26px;
   color: #f0f0f0;
   line-height: 1.5;
   margin-bottom: 20px;
@@ -72,7 +72,7 @@ body {
 }
 
 .hero-sub {
-  font-size: 14px;
+  font-size: 17px;
   color: #999;
   line-height: 1.7;
   margin-bottom: 35px;
@@ -84,7 +84,7 @@ body {
   gap: 16px;
   flex-wrap: wrap;
   color: #999;
-  font-size: 12px;
+  font-size: 13px;
   font-family: 'JetBrains Mono', monospace;
   margin-bottom: 35px;
 }
@@ -124,7 +124,7 @@ body {
   gap: 10px;
   padding: 13px 28px;
   border-radius: 30px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
   border: 2px solid #222;
@@ -150,7 +150,7 @@ body {
 
 .hero-link {
   color: #999;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   position: relative;
@@ -207,7 +207,7 @@ body {
 }
 
 .project-row-title h3 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   color: #fff;
 }
@@ -217,7 +217,7 @@ body {
   color: #ff004f;
   padding: 5px 14px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
 }
@@ -227,7 +227,7 @@ body {
   align-items: center;
   gap: 16px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 13px;
   color: #888;
 }
 
@@ -244,7 +244,7 @@ body {
 
 .project-row-desc {
   color: #999;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -261,7 +261,7 @@ body {
   color: #ccc;
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 10px;
+  font-size: 11px;
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -272,11 +272,11 @@ body {
   }
 
   .project-row-title h3 {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .project-row-desc {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -304,7 +304,7 @@ body {
 }
 
 .experience-role {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: #fff;
 }
@@ -316,14 +316,14 @@ body {
 
 .experience-dates {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 13px;
   color: #888;
   white-space: nowrap;
 }
 
 .experience-row-desc {
   color: #999;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -349,7 +349,7 @@ body {
 
 .section-label {
   color: #666;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 2px;
@@ -371,14 +371,14 @@ body {
 
 .skills-label {
   color: #ff004f;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .skills-value {
   color: #ccc;
-  font-size: 12px;
+  font-size: 13px;
   font-family: 'JetBrains Mono', monospace;
   line-height: 1.6;
 }
@@ -436,7 +436,7 @@ nav ul li:first-child {
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
   position: relative;
