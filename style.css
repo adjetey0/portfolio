@@ -419,14 +419,13 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: flex-start;
 }
 
 nav ul li {
   display: inline-block;
   list-style: none;
-  margin: 6px 10px;
+  margin: 6px 8px;
 }
 
 nav ul li:first-child {
@@ -443,6 +442,10 @@ nav ul li a {
 }
 
 nav ul li a[href="contact.html"] {
+  display: none;
+}
+
+nav ul li:has(a[href="contact.html"]) {
   display: none;
 }
 
