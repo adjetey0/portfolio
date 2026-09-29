@@ -27,12 +27,12 @@ body {
   width: 100%;
   background: #0a0a0a;
   border-bottom: 2px solid #161616;
-  padding: 6px 0;
+  padding: 2px 0;
 }
 
 /* ===== HOME HERO (text-only) ===== */
 #home-hero {
-  padding: 110px 0 70px;
+  padding: 70px 0 40px;
 }
 
 .hero-row {
@@ -44,10 +44,10 @@ body {
 }
 
 .hero-wordmark {
-  font-size: 88px;
+  font-size: 56px;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   background: linear-gradient(90deg, #ff004f, #ff6f3d);
   -webkit-background-clip: text;
   background-clip: text;
@@ -61,10 +61,10 @@ body {
 }
 
 .hero-lead {
-  font-size: 26px;
+  font-size: 18px;
   color: #f0f0f0;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .hero-lead strong {
@@ -72,27 +72,27 @@ body {
 }
 
 .hero-sub {
-  font-size: 17px;
+  font-size: 13px;
   color: #999;
-  line-height: 1.7;
-  margin-bottom: 35px;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .hero-meta {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   flex-wrap: wrap;
   color: #999;
-  font-size: 13px;
+  font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .hero-meta-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .hero-meta-item i {
@@ -100,8 +100,8 @@ body {
 }
 
 .hero-dot-status {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #4caf50;
   display: inline-block;
@@ -114,17 +114,17 @@ body {
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 13px 28px;
+  gap: 8px;
+  padding: 9px 20px;
   border-radius: 30px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
   border: 2px solid #222;
@@ -150,7 +150,7 @@ body {
 
 .hero-link {
   color: #999;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
   position: relative;
@@ -178,11 +178,11 @@ body {
 
 /* ===== SELECTED PROJECTS (home page) ===== */
 #selected-projects {
-  padding: 20px 0 60px;
+  padding: 14px 0 40px;
 }
 
 .project-row {
-  padding: 26px 0;
+  padding: 18px 0;
   border-top: 1px solid #1a1a1a;
 }
 
@@ -195,19 +195,19 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
 .project-row-title {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .project-row-title h3 {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   color: #fff;
 }
@@ -215,9 +215,9 @@ body {
 .project-tag {
   background: rgba(255, 0, 79, 0.12);
   color: #ff004f;
-  padding: 5px 14px;
+  padding: 4px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
 }
@@ -225,43 +225,43 @@ body {
 .project-row-meta {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 11px;
   color: #888;
 }
 
 .project-category {
   background: #111;
   border: 1px solid #222;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 20px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: #ccc;
 }
 
 .project-row-desc {
   color: #999;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .project-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
+  gap: 6px;
+  margin-top: 10px;
 }
 
 .project-stack-tag {
   background: #111;
   border: 1px solid #222;
   color: #ccc;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 10px;
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -272,21 +272,21 @@ body {
   }
 
   .project-row-title h3 {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .project-row-desc {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
 /* ===== EXPERIENCE (home page) ===== */
 #experience {
-  padding: 20px 0 60px;
+  padding: 14px 0 40px;
 }
 
 .experience-row {
-  padding: 26px 0;
+  padding: 18px 0;
   border-top: 1px solid #1a1a1a;
 }
 
@@ -299,12 +299,12 @@ body {
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
 .experience-role {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   color: #fff;
 }
@@ -316,15 +316,15 @@ body {
 
 .experience-dates {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 11px;
   color: #888;
   white-space: nowrap;
 }
 
 .experience-row-desc {
   color: #999;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
@@ -334,34 +334,34 @@ body {
   }
 
   .experience-role {
-    font-size: 17px;
+    font-size: 15px;
   }
 
   .experience-row-desc {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
 /* ===== SKILLS & SYSTEMS ===== */
 #skills-systems {
-  padding: 40px 0 80px;
+  padding: 28px 0 56px;
 }
 
 .section-label {
   color: #666;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .skills-row {
   display: grid;
   grid-template-columns: 220px 1fr;
-  gap: 24px;
-  padding: 20px 0;
+  gap: 16px;
+  padding: 14px 0;
   border-top: 1px solid #1a1a1a;
 }
 
@@ -371,16 +371,16 @@ body {
 
 .skills-label {
   color: #ff004f;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .skills-value {
   color: #ccc;
-  font-size: 13px;
+  font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .container {
@@ -426,7 +426,7 @@ nav ul {
 nav ul li {
   display: inline-block;
   list-style: none;
-  margin: 8px 12px;
+  margin: 6px 10px;
 }
 
 nav ul li:first-child {
@@ -436,7 +436,7 @@ nav ul li:first-child {
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
   position: relative;
