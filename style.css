@@ -442,6 +442,10 @@ nav ul li a {
   position: relative;
 }
 
+nav ul li a[href="contact.html"] {
+  display: none;
+}
+
 nav ul li a::after {
   content: '';
   width: 0;
