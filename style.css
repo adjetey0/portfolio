@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
@@ -1396,7 +1396,7 @@ nav ul li a.active-page {
   border-radius: 10px;
   color: #fff;
   font-size: 14px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   resize: vertical;
@@ -1878,7 +1878,7 @@ nav ul li a.active-page {
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .nd-github-btn:hover {
@@ -1897,7 +1897,7 @@ nav ul li a.active-page {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .nd-close-btn:hover {
