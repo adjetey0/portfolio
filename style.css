@@ -1465,10 +1465,14 @@ nav ul li a.active-page {
 }
 
 /* ===== NOTE WALL (sticky-note cards) ===== */
+#wall .container {
+  max-width: 1600px;
+}
+
 .wall-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+  gap: 28px;
   padding: 10px;
 }
 
@@ -1485,8 +1489,8 @@ nav ul li a.active-page {
   width: 100%;
   background: #0d0d0d;
   border: 1px solid #1e1e1e;
-  border-radius: 10px;
-  padding: 14px 16px;
+  border-radius: 14px;
+  padding: 24px 26px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -1499,18 +1503,18 @@ nav ul li a.active-page {
 
 .wall-card-name {
   font-family: 'Caveat', cursive;
-  font-size: 21px;
+  font-size: 32px;
   font-weight: 700;
   color: #ff004f;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   line-height: 1.1;
 }
 
 .wall-card-message {
   color: #ddd;
-  font-size: 13px;
-  line-height: 1.45;
-  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 16px;
   word-break: break-word;
 }
 
@@ -1524,14 +1528,14 @@ nav ul li a.active-page {
 
 .wall-card-handle {
   color: #666;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .wall-card-time {
   color: #666;
-  font-size: 10px;
+  font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
 }
 
