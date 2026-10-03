@@ -70,7 +70,7 @@ body {
 
 .hero-lead {
   font-size: 18px;
-  color: #f0f0f0;
+  color: var(--text-primary);
   line-height: 1.5;
   margin-bottom: 12px;
 }
@@ -1511,7 +1511,7 @@ nav ul li a.active-page {
 }
 
 .wall-card-message {
-  color: #ddd;
+  color: var(--text-secondary);
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 16px;
