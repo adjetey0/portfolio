@@ -116,7 +116,7 @@ body {
 }
 
 .hero-meta-divider {
-  color: #444;
+  color: var(--text-muted-dark);
 }
 
 .hero-actions {
@@ -356,7 +356,7 @@ body {
 }
 
 .section-label {
-  color: #666;
+  color: var(--text-muted-dark);
   font-size: 11px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
@@ -1386,7 +1386,7 @@ nav ul li a.active-page {
 .wall-input-icon i {
   position: absolute;
   left: 16px;
-  color: #666;
+  color: var(--text-muted-dark);
   font-size: 13px;
   pointer-events: none;
 }
@@ -1412,7 +1412,7 @@ nav ul li a.active-page {
 
 .wall-form input::placeholder,
 .wall-form textarea::placeholder {
-  color: #666;
+  color: var(--text-muted-dark);
 }
 
 .wall-form input:focus,
@@ -1430,7 +1430,7 @@ nav ul li a.active-page {
 
 .wall-sig-label {
   display: block;
-  color: #666;
+  color: var(--text-muted-dark);
   font-size: 11px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
@@ -1455,7 +1455,7 @@ nav ul li a.active-page {
 }
 
 .wall-char-count {
-  color: #666;
+  color: var(--text-muted-dark);
   font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
 }
@@ -1527,14 +1527,14 @@ nav ul li a.active-page {
 }
 
 .wall-card-handle {
-  color: #666;
+  color: var(--text-muted-dark);
   font-size: 12px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .wall-card-time {
-  color: #666;
+  color: var(--text-muted-dark);
   font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
 }
@@ -1730,7 +1730,7 @@ nav ul li a.active-page {
 }
 
 .footer-nav {
-  color: #555;
+  color: var(--text-muted-dark);
   font-size: 13px;
   font-family: 'JetBrains Mono', monospace;
   line-height: 2;
@@ -1764,13 +1764,13 @@ nav ul li a.active-page {
 }
 
 .footer-bottom-row p {
-  color: #666;
+  color: var(--text-muted-dark);
   font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .footer-location {
-  color: #666;
+  color: var(--text-muted-dark);
 }
 
 /* Toast Notification */
@@ -1862,7 +1862,7 @@ nav ul li a.active-page {
 }
 
 .nd-modal p {
-  color: #aaa;
+  color: var(--text-muted);
   font-size: 15px;
   line-height: 1.7;
   margin-bottom: 28px;
@@ -1899,7 +1899,7 @@ nav ul li a.active-page {
 
 .nd-close-btn {
   background: transparent;
-  color: #aaa;
+  color: var(--text-muted);
   border: 2px solid #333;
   padding: 12px 24px;
   border-radius: 10px;
