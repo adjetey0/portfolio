@@ -2,10 +2,10 @@
 
 :root {
   /* Edit these 4 values to change the text colors across the whole site */
-  --text-primary: #887766;    /* headings, bold text, main body copy */
+  --text-primary: #fdf8f1;    /* headings, bold text, main body copy */
   --text-secondary: #887766;  /* slightly muted body text */
-  --text-muted-dark: #887766(36 85% 4% / 0.723);      /* descriptions, secondary labels */
-  --text-muted-dark:#887766(36 85% 4% / 0.723); /* smallest/quietest text (dates, meta) */
+  --text-muted-dark: #887766;      /* descriptions, secondary labels */
+  --text-muted-dark:#887766; /* smallest/quietest text (dates, meta) */
 }
 
 * {
