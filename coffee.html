@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>nii adjetey — Coffee</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
   <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="theme.js" defer></script>
 
   <!-- Page-specific styles for the Coffee page only -->
   <style>
@@ -43,14 +44,14 @@
     .coffee-title {
       font-size: clamp(2.6rem, 5vw, 4.2rem);
       font-weight: 700;
-      color: #fff;
+      color: var(--text-primary);
       margin-bottom: 16px;
       line-height: 0.98;
       letter-spacing: -0.06em;
     }
 
     .coffee-subtitle {
-      color: #b7a99a;
+      color: var(--text-secondary);
       font-size: 17px;
       line-height: 1.7;
       max-width: 660px;
@@ -59,15 +60,15 @@
     }
 
     .coffee-card {
-      background: linear-gradient(180deg, rgba(18, 18, 20, 0.96), rgba(13, 13, 15, 0.98));
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 22px;
       padding: 32px 28px 24px;
       max-width: 660px;
       width: 100%;
       margin: 0 auto;
       text-align: center;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      box-shadow: var(--shadow-soft);
     }
 
     .amount-grid {
@@ -79,9 +80,9 @@
 
     .amount-btn {
       position: relative;
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #d8d2cb;
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
       padding: 14px 8px;
       border-radius: 12px;
       font-size: 15px;
@@ -93,14 +94,14 @@
 
     .amount-btn:hover {
       border-color: var(--accent);
-      color: #fff;
+      color: var(--text-primary);
       transform: translateY(-2px);
     }
 
     .amount-btn.active {
       background: var(--accent-gradient);
       border-color: transparent;
-      box-shadow: 0 12px 24px rgba(238, 122, 116, 0.28);
+      box-shadow: 0 12px 24px var(--accent-ring);
       color: #fff;
     }
 
@@ -115,8 +116,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 18px 20px;
       margin-bottom: 12px;
@@ -131,14 +132,14 @@
 
     .amount-display-currency span:first-child {
       font-size: 27px;
-      color: #d7cfc7;
+      color: var(--text-secondary);
       font-weight: 700;
       line-height: 1;
     }
 
     .amount-display-currency span:last-child {
       font-size: 10px;
-      color: #8a7f75;
+      color: var(--text-muted-dark);
       letter-spacing: 1px;
       text-transform: uppercase;
     }
@@ -147,7 +148,7 @@
       background: transparent;
       border: none;
       outline: none;
-      color: #fff;
+      color: var(--text-primary);
       font-size: clamp(2rem, 5vw, 2.6rem);
       font-weight: 700;
       text-align: right;
@@ -157,7 +158,7 @@
     }
 
     .coffee-helper {
-      color: #a18f83;
+      color: var(--text-muted);
       font-size: 13px;
       margin-bottom: 24px;
       text-align: center;
@@ -184,10 +185,10 @@
     .coffee-form textarea {
       width: 100%;
       padding: 15px 16px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--surface-inset);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      color: #fff;
+      color: var(--text-primary);
       font-size: 14px;
       font-family: 'Instrument Sans', 'Inter', sans-serif;
       outline: none;
@@ -197,14 +198,14 @@
 
     .coffee-form input::placeholder,
     .coffee-form textarea::placeholder {
-      color: #7d7068;
+      color: var(--text-muted-dark);
     }
 
     .coffee-form input:focus,
     .coffee-form textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 4px var(--accent-soft);
-      background: rgba(255, 255, 255, 0.03);
+      background: var(--surface);
     }
 
     .coffee-submit-btn {
@@ -218,7 +219,7 @@
       cursor: pointer;
       transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
       margin-top: 6px;
-      box-shadow: 0 14px 28px rgba(238, 122, 116, 0.22);
+      box-shadow: 0 14px 28px var(--accent-ring);
     }
 
     .coffee-submit-btn:hover {
@@ -234,7 +235,7 @@
     }
 
     .coffee-note {
-      color: #7d7068;
+      color: var(--text-muted-dark);
       font-size: 12px;
       text-align: center;
       margin-top: 16px;
@@ -275,6 +276,7 @@
           <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
           <li><a href="dashboard.html" onclick="closeMenu()">Dashboard</a></li>
         </ul>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme"></button>
       </nav>
     </div>
   </header>
