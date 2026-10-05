@@ -3,7 +3,7 @@
 :root {
   /* Edit these 4 values to change the text colors across the whole site */
   --text-primary: #fdf8f1;    /* headings, bold text, main body copy */
-  --text-secondary: #f0e4d0;  /* slightly muted body text */
+  --text-secondary: #d6bf9c;  /* slightly muted body text */
   --text-muted: #e3d0b4;      /* descriptions, secondary labels */
   --text-muted-dark: #d6bf9c; /* smallest/quietest text (dates, meta) */
 }
