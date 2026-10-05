@@ -5,7 +5,7 @@
   --text-primary: #fdf8f1;    /* headings, bold text, main body copy */
   --text-secondary: #d6bf9c;  /* slightly muted body text */
   --text-muted: #e3d0b4;      /* descriptions, secondary labels */
-  --text-muted-dark: #d6bf9c; /* smallest/quietest text (dates, meta) */
+  --text-muted-dark: hsla(36, 41%, 73%, 0.723); /* smallest/quietest text (dates, meta) */
 }
 
 * {
