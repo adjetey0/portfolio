@@ -29,8 +29,8 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: rgba(239, 108, 105, 0.12);
-      border: 1px solid rgba(239, 108, 105, 0.28);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-ring);
       color: var(--accent-2);
       padding: 8px 18px;
       border-radius: 999px;
@@ -92,15 +92,15 @@
     }
 
     .amount-btn:hover {
-      border-color: rgba(239, 108, 105, 0.7);
+      border-color: var(--accent);
       color: #fff;
       transform: translateY(-2px);
     }
 
     .amount-btn.active {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      background: var(--accent-gradient);
       border-color: transparent;
-      box-shadow: 0 12px 24px rgba(239, 108, 105, 0.28);
+      box-shadow: 0 12px 24px rgba(238, 122, 116, 0.28);
       color: #fff;
     }
 
@@ -202,13 +202,13 @@
 
     .coffee-form input:focus,
     .coffee-form textarea:focus {
-      border-color: rgba(239, 108, 105, 0.8);
-      box-shadow: 0 0 0 4px rgba(239, 108, 105, 0.12);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
       background: rgba(255, 255, 255, 0.03);
     }
 
     .coffee-submit-btn {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      background: var(--accent-gradient);
       color: #fff;
       border: none;
       padding: 16px 18px;
@@ -218,7 +218,7 @@
       cursor: pointer;
       transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
       margin-top: 6px;
-      box-shadow: 0 14px 28px rgba(239, 108, 105, 0.22);
+      box-shadow: 0 14px 28px rgba(238, 122, 116, 0.22);
     }
 
     .coffee-submit-btn:hover {
