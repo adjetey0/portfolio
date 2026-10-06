@@ -82,18 +82,18 @@
         <img src="images/album/hackathon-team-mega-ai.jpg" alt="Team Mega AI, hackathon winners">
         <img src="images/album/mobile-dev-codefest.jpg" alt="Taking pictures with my colleagues during the Mobile Dev Codefest">
         <img src="images/album/mdev-with-colleagues.jpg" alt="Sharing a moment with my colleagues at the Mobile Dev Codefest">
-        <img src="images/album/mobile-dev-group-picture.jpg" alt="Participating in the Mobile Dev Codefest" data-position="center 70%" data-zoom="2" data-focus="60%">
-        <img src="images/album/mobile-dev-group-picture2.jpg" alt="With colleagues at the Mobile Dev Codefest" data-position="center 75%" data-zoom="2" data-focus="60%">
+        <img src="images/album/mobile-dev-group-picture.jpg" alt="Participating in the Mobile Dev Codefest">
+        <img src="images/album/mobile-dev-group-picture2.jpg" alt="With colleagues at the Mobile Dev Codefest">
         <img src="images/album/sunday-service-with-sister.jpg" alt="With family after my Sunday service">
         <img src="images/album/mom-portrait-1.jpg" alt="Portrait of my mom">
         <img src="images/album/mom-portrait-2.jpg" alt="Portrait of my mom">
         <img src="images/album/mom-portrait-3.jpg" alt="Portrait of my mom">
-        <img src="images/album/high-school-graduation.jpg" alt="Portrait of me in my high school graduation gown with my bestie and my sister" data-position="top">
-        <img src="images/album/Bestie.jpg" alt="Portrait of my bestie" data-position="top">
+        <img src="images/album/high-school-graduation.jpg" alt="Portrait of me in my high school graduation gown with my bestie and my sister">
+        <img src="images/album/Bestie.jpg" alt="Portrait of my bestie">
         <img src="images/album/Bestfriend.jpeg" alt="Portrait of my Best friend, Oduro Enoch Nana Tabi">
         <img src="images/album/Rep-your-school1.jpg" alt="Portrait of me in my high school uniform with my colleagues">
         <img src="images/album/Rep-your-school2.jpg" alt="Portrait of me in my high school uniform with my high school mate. OLAG-OLAG">
-        <img src="images/album/Rep-your-school3.jpg" alt="Featured SMARTS in here. OLAG-SMARTS" data-position="center 85%" data-zoom="1.35" data-focus="60%">
+        <img src="images/album/Rep-your-school3.jpg" alt="Featured SMARTS in here. OLAG-SMARTS">
         <img src="images/album/YouthWeekService1.jpeg" alt="Youth Week Service with my sister">
         <img src="images/album/YouthWeekService2.jpeg" alt="Youth Week Service with my sister">
         <img src="images/album/YouthWeekService3.jpeg" alt="Youth Week Service with my sister">
@@ -202,10 +202,7 @@
     const albumPhotos = Array.from(document.querySelectorAll('#album-source img')).map(function (img) {
       return {
         src: img.getAttribute('src'),
-        alt: img.getAttribute('alt') || '',
-        position: img.getAttribute('data-position') || 'center top',
-        zoom: img.getAttribute('data-zoom') || '1',
-        focus: img.getAttribute('data-focus') || '50%'
+        alt: img.getAttribute('alt') || ''
       };
     });
 
@@ -234,7 +231,7 @@
       visible.forEach(function (photo, i) {
         const card = document.createElement('div');
         card.className = 'deck-card deck-card-' + i;
-        card.innerHTML = '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy" style="object-position: ' + photo.position + '; --photo-zoom: ' + photo.zoom + '; --photo-focus: ' + photo.focus + ';">';
+        card.innerHTML = '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy">';
         card.addEventListener('click', function () {
           const globalIndex = albumPhotos.indexOf(photo);
           openLightboxFromAlbum(globalIndex);
@@ -261,7 +258,7 @@
         const item = document.createElement('div');
         item.className = 'album-item';
         item.innerHTML =
-          '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy" style="object-position: ' + photo.position + ';">' +
+          '<img src="' + photo.src + '" alt="' + photo.alt + '" loading="lazy">' +
           '<div class="album-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>';
         item.addEventListener('click', function () {
           openLightboxFromAlbum(index);
