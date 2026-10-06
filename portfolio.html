@@ -18,7 +18,7 @@
         <div class="logo">
           <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
         </div>
-        <i class="fas fa-bars" id="menu-icon"></i>
+        <button class="fas fa-bars" id="menu-icon" type="button" aria-label="Open navigation menu" aria-expanded="false"></button>
         <ul id="nav-menu">
           <li><a href="index.html" onclick="closeMenu()">Home</a></li>
           <li><a href="about.html" onclick="closeMenu()">About</a></li>
@@ -280,6 +280,9 @@
           menuIcon.classList.remove('fa-times');
           menuIcon.classList.add('fa-bars');
         }
+        const isMenuOpen = navMenu.classList.contains('active');
+        menuIcon.setAttribute('aria-expanded', String(isMenuOpen));
+        menuIcon.setAttribute('aria-label', isMenuOpen ? 'Close navigation menu' : 'Open navigation menu');
       });
     }
 
@@ -290,6 +293,8 @@
       if (menuIcon) {
         menuIcon.classList.remove('fa-times');
         menuIcon.classList.add('fa-bars');
+        menuIcon.setAttribute('aria-expanded', 'false');
+        menuIcon.setAttribute('aria-label', 'Open navigation menu');
       }
     }
 

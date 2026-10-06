@@ -2064,6 +2064,123 @@ nav ul li a.active-page {
     padding: 10px 5%;
   }
 
+  .page-topbar .container {
+    padding: 8px 4%;
+  }
+
+  .page-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .page-topbar nav {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .page-topbar .logo {
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  .page-topbar .logo h1 {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+
+  .page-topbar .logo h1 a {
+    white-space: nowrap;
+  }
+
+  .page-topbar nav::after {
+    content: "Accra, Ghana";
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+    padding: 6px 10px 6px 18px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    background-image: radial-gradient(circle at 10px 50%, var(--accent) 3px, transparent 3.5px);
+    color: var(--text-secondary);
+    font: 400 10px 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    order: 2;
+  }
+
+  .page-topbar #menu-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    order: 4;
+  }
+
+  .page-topbar .theme-toggle {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    order: 3;
+  }
+
+  .page-topbar .theme-toggle span {
+    display: none;
+  }
+
+  .page-topbar nav ul {
+    display: none;
+    position: absolute;
+    top: calc(100% + 9px);
+    right: 0;
+    left: 0;
+    z-index: 2;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    background: var(--bg-elev);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .page-topbar nav ul.active {
+    display: flex;
+  }
+
+  .page-topbar nav ul li {
+    display: block;
+    margin: 0;
+  }
+
+  .page-topbar nav ul li a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  .page-topbar nav ul li a::after {
+    display: none;
+  }
+
+  .page-topbar nav ul li a:hover,
+  .page-topbar nav ul li a.active-page {
+    background: var(--accent-soft);
+  }
+
   nav ul {
     justify-content: center;
     gap: 2px;

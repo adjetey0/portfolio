@@ -15,6 +15,10 @@
   <header class="page-topbar">
     <div class="container">
       <nav>
+        <div class="logo">
+          <h1><a href="index.html"><span>B</span>ISMARCK</a></h1>
+        </div>
+        <button class="fas fa-bars" id="menu-icon" type="button" aria-label="Open navigation menu" aria-expanded="false"></button>
         <ul id="nav-menu">
           <li><a href="index.html" class="active-page">Home</a></li>
           <li><a href="about.html">About</a></li>
@@ -289,6 +293,28 @@
   </button>
 
   <script>
+    const menuIcon = document.getElementById('menu-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuIcon.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
+      menuIcon.classList.toggle('fa-bars');
+      menuIcon.classList.toggle('fa-times');
+      const isMenuOpen = navMenu.classList.contains('active');
+      menuIcon.setAttribute('aria-expanded', String(isMenuOpen));
+      menuIcon.setAttribute('aria-label', isMenuOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
+
+    navMenu.addEventListener('click', function(event) {
+      if (event.target.closest('a')) {
+        navMenu.classList.remove('active');
+        menuIcon.classList.add('fa-bars');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.setAttribute('aria-expanded', 'false');
+        menuIcon.setAttribute('aria-label', 'Open navigation menu');
+      }
+    });
+
     // Back to Top Button Functionality
     const backToTopBtn = document.getElementById('back-to-top');
     window.addEventListener('scroll', function() {
