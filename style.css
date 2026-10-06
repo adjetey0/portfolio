@@ -2371,7 +2371,7 @@ nav ul li a.active-page {
   .deck-card-3:hover { transform: translateX(-50%) translateX(60px) rotate(10deg) translateY(-8px); }
 
   .album-grid {
-    grid-auto-rows: 160px;
+    grid-auto-rows: 250px;
     gap: 14px;
   }
 
