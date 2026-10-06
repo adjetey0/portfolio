@@ -1139,9 +1139,11 @@ nav ul li a.active-page {
 .deck-card img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  background: var(--surface-inset);
+  transform: scale(var(--photo-zoom, 1));
+  transform-origin: center var(--photo-focus, 50%);
 }
 
 .deck-card:hover {
@@ -1215,9 +1217,9 @@ nav ul li a.active-page {
 .album-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  background: var(--surface-inset);
 }
 
 .album-item-overlay {
