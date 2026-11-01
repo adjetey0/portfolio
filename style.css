@@ -2286,18 +2286,27 @@ nav ul li a.active-page {
   }
 
   .portfolio-image {
-    height: 200px;
+    height: auto;
+    overflow: visible;
   }
 
   .portfolio-image img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 200px;
     object-fit: cover;
   }
 
-  .portfolio-info {
+  .portfolio-overlay {
+    position: relative;
+    width: 100%;
+    height: auto;
     padding: 20px;
+    opacity: 1;
+  }
+
+  .portfolio-info {
+    padding: 0;
   }
 
   .portfolio-info h3 {
@@ -2312,6 +2321,7 @@ nav ul li a.active-page {
     flex-direction: row;
     gap: 10px;
     flex-wrap: wrap;
+    margin-top: 16px;
   }
 
   .portfolio-links a {
@@ -2319,11 +2329,6 @@ nav ul li a.active-page {
     justify-content: center;
     padding: 10px 12px;
     font-size: 13px;
-  }
-
-  /* Show overlay on tap via .tapped class added by JS */
-  .portfolio-card.tapped .portfolio-overlay {
-    opacity: 1;
   }
 
   .portfolio-content h3 {
@@ -2656,6 +2661,10 @@ nav ul li a.active-page {
   }
 
   .portfolio-image {
+    height: auto;
+  }
+
+  .portfolio-image img {
     height: 160px;
   }
 
