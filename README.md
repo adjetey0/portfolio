@@ -108,6 +108,6 @@ Deployed on Vercel. Push to the connected repo and Vercel redeploys automaticall
 - GitHub: [@adjetey0](https://github.com/adjetey0)
 - LinkedIn: [niiadjetey](https://www.linkedin.com/in/niiadjetey)
 - X: [@mradjeteynii](https://x.com/mradjeteynii)
-- Instagram: [@west.xds](https://www.instagram.com/west.xds)
+- Instagram: [@west.xds](https://www.instagram.com/salvagenr)
 
 &copy; 2025 Adjei Bismarck. All rights reserved.
