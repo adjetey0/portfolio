@@ -1,4 +1,4 @@
-# Adjei Bismarck — Portfolio
+# Adjei Bismarck — Portfolio.
 
 Personal portfolio site of **Adjei Bismarck (Nii Adjetey)**, an Embedded Systems Engineer who also works across backend development, web engineering, and data analytics. Built as a plain multi-page static site: no framework, no build step.
 
